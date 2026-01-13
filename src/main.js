@@ -4,6 +4,7 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import lazyLoad from './directives/lazyLoad'
+import '@/assets/fonts/fonts.css'
 
 const app = createApp(App)
 

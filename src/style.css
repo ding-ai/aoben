@@ -1,137 +1,51 @@
 @import 'tailwindcss';
 
-/* ==================== 自定义主题色 ==================== */
-@theme {
-  --color-brand: #e85a5a;
-  --color-brand-dark: #d14545;
-  --color-warm-brown: #5a2a1a;
-  --color-warm-light: #6b3a2a;
-}
-
 /* ==================== 基础样式 ==================== */
+
+/* 重置所有元素 margin/padding，统一 box-sizing 为 border-box，方便布局计算 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* html 基础设置 */
 html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+  font-size: 16px; /* 根字体大小，便于 rem 单位计算 */
+  scroll-behavior: smooth; /* 页面滚动平滑过渡 */
 }
 
+/* body 基础设置 */
 body {
-  font-family:
-    'PingFang SC',
-    'Microsoft YaHei',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
+  font-family:                /* 全局字体设置 */
+    'MiSans',
+    /* 自定义字体，首选 */ -apple-system,
+    /* Mac/iOS 系统默认字体 */ BlinkMacSystemFont,
+    /* Chrome/Safari */ 'Segoe UI',
+    /* Windows 系统字体 */ Roboto,
     'Helvetica Neue',
     Arial,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    sans-serif; /* 备用字体 */
+  -webkit-font-smoothing: antialiased; /* macOS/Chrome 字体抗锯齿 */
+  -moz-osx-font-smoothing: grayscale; /* macOS/Firefox 字体抗锯齿 */
+  line-height: 1.6; /* 全局行高，保证文本间距舒适 */
+  color: #333; /* 全局文本颜色 */
+  background-color: #fff; /* 全局背景色 */
 }
 
-/* ==================== 通用动画 ==================== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ==================== 容器布局 ==================== */
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse-soft {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* ==================== 通用组件样式 ==================== */
-.section-title {
-  @apply text-center font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl
-         mb-4 sm:mb-6 text-gray-800 tracking-tight;
-}
-
-.section-subtitle {
-  @apply text-center text-gray-500 text-sm sm:text-base lg:text-lg
-         mb-10 sm:mb-12 lg:mb-16 max-w-2xl mx-auto;
-}
-
-.card-hover {
-  @apply transition-all duration-500 ease-out
-         hover:-translate-y-3 hover:shadow-2xl;
-}
-
-.btn-primary {
-  @apply inline-flex items-center justify-center gap-2
-         px-6 sm:px-8 py-3 sm:py-4
-         bg-gradient-to-r from-brand to-brand-dark
-         text-white text-sm sm:text-base font-medium
-         rounded-full shadow-lg shadow-brand/30
-         transition-all duration-300
-         hover:shadow-xl hover:shadow-brand/40 hover:-translate-y-1
-         active:scale-95;
-}
-
-.btn-outline {
-  @apply inline-flex items-center justify-center gap-2
-         px-6 sm:px-8 py-3 sm:py-4
-         border-2 border-white/80 text-white
-         text-sm sm:text-base font-medium rounded-full
-         backdrop-blur-sm transition-all duration-300
-         hover:bg-white/20 hover:border-white;
-}
-
-/* 渐变文字 */
-.gradient-text {
-  @apply bg-gradient-to-r from-brand to-orange-400 bg-clip-text text-transparent;
-}
-
-/* 玻璃态效果 */
-.glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/20;
-}
-
-/* 响应式容器 - 内容居中，最大宽度限制 */
+/* 主容器：内容居中，响应式内边距，最大宽度 1280px */
 .container-main {
-  @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12;
-  max-width: 1280px;
+  @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12; /* Tailwind 工具类：宽度100%，水平居中，响应式内边距 */
+  max-width: 1280px; /* 最大宽度限制，防止大屏拉伸太宽 */
 }
 
-/* 宽屏容器 - 用于需要更宽布局的场景 */
+/* 宽屏容器：用于需要更宽布局的页面，最大宽度 1440px */
 .container-wide {
-  @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12;
-  max-width: 1440px;
+  @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12; /* 同上：全宽 + 居中 + 响应式内边距 */
+  max-width: 1440px; /* 更宽的最大宽度限制 */
 }
