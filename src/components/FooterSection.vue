@@ -13,26 +13,6 @@
           <p class="text-gray-400 text-sm leading-relaxed mb-6">
             奥本集团专注于瑜伽、养生、医美领域，融合科技医美、美容养生、运动美学三位一体的理念。
           </p>
-          <!-- 社交图标 -->
-
-          <div class="flex gap-3">
-            <a
-              href="#"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center transition-colors hover:bg-brand"
-            >
-              <img src="../assets/images/加粗细.png" alt="" class="w-5 h-5 brightness-0 invert" />
-            </a>
-            <a
-              href="#"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center transition-colors hover:bg-brand"
-            >
-              <img
-                src="../assets/images/Frame 33922.png"
-                alt=""
-                class="w-5 h-5 brightness-0 invert"
-              />
-            </a>
-          </div>
         </div>
 
         <!-- 快速链接 -->

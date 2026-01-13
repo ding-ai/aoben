@@ -112,22 +112,6 @@
         </div>
       </div>
     </section>
-
-    <!-- CTA -->
-    <section class="py-16 sm:py-20 lg:py-28 bg-gray-900 text-white">
-      <div class="container-main text-center">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-          开启您的健康美丽之旅
-        </h2>
-        <p class="text-gray-400 text-sm sm:text-base lg:text-lg mb-8 sm:mb-10 max-w-xl mx-auto">
-          加入奥本，让专业团队为您定制专属的健康美丽方案
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <button class="btn-primary">立即咨询</button>
-          <router-link to="/join" class="btn-outline"> 加盟合作 </router-link>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
