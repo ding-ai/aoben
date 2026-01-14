@@ -11,46 +11,48 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('@/views/Home/index.vue')
+        component: () => import('@/views/Home/index.vue'),
       },
       {
         path: 'about',
         name: 'About',
-        component: () => import('@/views/About/index.vue')
+        component: () => import('@/views/About/index.vue'),
       },
       {
         path: 'news',
         name: 'News',
-        component: () => import('@/views/News/index.vue')
+        component: () => import('@/views/News/index.vue'),
       },
       {
         path: 'join',
         name: 'Join',
-        component: () => import('@/views/Join/index.vue')
+        component: () => import('@/views/Join/index.vue'),
       },
       {
         path: 'contact',
         name: 'Contact',
-        component: () => import('@/views/Contact/index.vue')
-      }
-    ]
-  }
+        component: () => import('@/views/Contact/index.vue'),
+      },
+    ],
+  },
 ]
-
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
     // 如果路由有 hash，滚动到对应元素
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: 'smooth',
       }
     }
     // 否则滚动到顶部
     return { top: 0, behavior: 'smooth' }
-  }
+  },
 })
 
 export default router

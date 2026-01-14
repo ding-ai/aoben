@@ -113,7 +113,7 @@ const brands = [
   /* 手机最小500px，中间按42vw缩放，最大800px */
   min-height: clamp(500px, 42vw, 800px);
   background-color: #fafafa;
-  background-image: url('../../assets/images/首页_slices/Frame 1000011613.png');
+  /* background-image: url('../../assets/images/首页_slices/Frame 1000011613.png'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
