@@ -98,7 +98,71 @@
       </div>
     </div>
   </section>
-  <section></section>
+
+  <!-- 五大核心业务板块 -->
+  <section class="business-section">
+    <div class="container-main">
+      <div class="business-header">
+        <h2 class="business-title">五大核心业务板块</h2>
+        <p class="business-subtitle">BUSINESS</p>
+      </div>
+      <div class="business-grid">
+        <div class="business-card" v-for="item in businessList" :key="item.title">
+          <div class="business-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                v-if="item.title === '运动塑形'"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+              <path
+                v-else-if="item.title === '美肤养护'"
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+              <path
+                v-else-if="item.title === '产后恢复'"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"
+              />
+              <path
+                v-else-if="item.title === '熟龄管理'"
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              />
+              <path
+                v-else
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"
+              />
+            </svg>
+          </div>
+          <div class="business-content">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 五大核心优势 -->
+  <section class="core-section">
+    <div class="container-main">
+      <div class="core-header">
+        <h2 class="core-title">五大核心优势</h2>
+        <p class="core-subtitle">CORE</p>
+      </div>
+      <div class="core-grid">
+        <div class="core-card" v-for="item in coreList" :key="item.title">
+          <div class="core-icon" style="text-align: center">
+            <img
+              src="/src/assets/images/加盟奥本_slices/Frame 1000011158.png"
+              :alt="item.title"
+              style="display: block; margin: 0 auto"
+            />
+          </div>
+          <h3 class="core-card-title" style="text-align: center">{{ item.title }}</h3>
+          <p class="core-card-desc">{{ item.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -109,6 +173,54 @@ const features = [
   { icon: '/src/assets/images/加盟奥本_slices/Frame 1000010504.png', text: '门店随心换' },
   { icon: '/src/assets/images/加盟奥本_slices/Frame 1000010504.png', text: '课程自由选' },
   { icon: '/src/assets/images/加盟奥本_slices/Frame 1000010504.png', text: '教练任你挑' },
+]
+
+// 五大核心业务数据
+const businessList = [
+  {
+    title: '运动塑形',
+    desc: '引进瑜伽、泰拳等塑身力量训练，实现健身+普拉提科学塑形，打造更加优体。',
+  },
+  {
+    title: '美肤养护',
+    desc: '长久驻颜，促进皮肤长期滋养，去斑、自主研发护肤产品，提供专业皮肤护理方案。',
+  },
+  {
+    title: '产后恢复',
+    desc: '精准评估，大幅提升产后调养，去斑、私密+骨盆+私密，多维助力快速恢复状态。',
+  },
+  {
+    title: '熟龄管理',
+    desc: '匀称调理，促进升级营养吸收，去斑、优先运动配套设备及产品，提供全套养方案。',
+  },
+  {
+    title: '健康调理',
+    desc: '提升机能，增强身体适应力，实现内外协调，多技术融合物质提高力。',
+  },
+]
+
+// 五大核心优势数据
+const coreList = [
+  {
+    title: '模式优势',
+    desc: '奥本打造了以共享瑜伽为核心的互联网平台，通过"场地引流、资源链接、多业态互补"三大主线，整合瑜伽五大品牌资源中科融合经营一体化，做生态赋能共生共赢。',
+  },
+  {
+    title: '产品优势',
+    desc: '自主研发3大系列产品，满足多元专业级别，同时，打通供应链整合资源20+国内外精品，含瑜伽服、Foreo、全棉时代、乔妮雅等，全链路体验升级，视觉营销增量。',
+  },
+  {
+    title: '平台优势',
+    desc: '自主技术平台拥有24项专利技术，实时数据跟踪、投后管、便捷化、线上小程序一键预约购物，线下智能化设备全流程配置。',
+  },
+  {
+    title: '营销优势',
+    desc: '线上打造集美集粉丝、小红书、抖音等全媒体矩阵，精准投放定向推流、借力双微及各类新媒体，依托大众点评平台自发私域流量，开心同好社群员打造单店流量池口碑裂变。',
+  },
+  {
+    title: '服务优势',
+    desc: '建立完善的SOP服务标准，确保多业态服务品质统一，提供1对1专属顾问服务，选址租赁到装修开业全流程陪跑，用心呵护会员打造单店流量池口碑裂变。',
+  },
 ]
 
 // 发展历程数据
@@ -637,6 +749,198 @@ const nextPage = () => {
 
 /* ==================== 通用 ==================== */
 .text-center {
+  text-align: center;
+}
+
+/* ==================== 五大核心业务板块 ==================== */
+.business-section {
+  min-height: clamp(400px, 32vw, 600px);
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background-color: #f8f8f8;
+}
+
+.business-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.business-title {
+  font-family: 'MiSans';
+  font-size: clamp(1.5rem, 4vw, 2.375rem);
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.business-subtitle {
+  font-family: 'Times New Roman', serif;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding-top: clamp(30px, 4vw, 40px); /* 给图标留出空间 */
+}
+
+@media (min-width: 640px) {
+  .business-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .business-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.business-card {
+  background: white;
+  border-radius: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.5rem);
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-top: clamp(20px, 3vw, 30px); /* 图标悬浮的空间 */
+}
+
+.business-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.business-icon {
+  width: clamp(40px, 5vw, 56px);
+  height: clamp(40px, 5vw, 56px);
+  border-radius: 50%;
+  background-color: #e85a5a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: clamp(-20px, -3vw, -28px);
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 12px rgba(232, 90, 90, 0.3);
+}
+
+.business-icon svg {
+  width: 50%;
+  height: 50%;
+  color: white;
+}
+
+.business-content {
+  padding-top: clamp(0.5rem, 1vw, 0.75rem);
+  text-align: center;
+}
+
+.business-content h3 {
+  font-family: 'MiSans';
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 600;
+  color: #333;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+.business-content p {
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  color: #999;
+  line-height: 1.6;
+}
+
+/* ==================== 五大核心优势 ==================== */
+.core-section {
+  min-height: clamp(450px, 35vw, 670px);
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background-color: #fff;
+}
+
+.core-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.core-title {
+  font-family: 'MiSans';
+  font-size: clamp(1.5rem, 4vw, 2.375rem);
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.core-subtitle {
+  font-family: 'Times New Roman', serif;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.core-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (min-width: 640px) {
+  .core-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .core-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.core-card {
+  background: #f8f8f8;
+  border-radius: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.core-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.core-icon {
+  width: 100%;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  text-align: center;
+}
+
+.core-icon img {
+  width: clamp(32px, 3.5vw, 44px);
+  height: clamp(32px, 3.5vw, 44px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.core-card-title {
+  font-family: 'MiSans';
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  font-weight: 600;
+  color: #333;
+  margin-bottom: clamp(0.25rem, 0.5vw, 0.375rem);
+  text-align: center;
+}
+
+.core-card-desc {
+  font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+  color: #999;
+  line-height: 1.5;
   text-align: center;
 }
 

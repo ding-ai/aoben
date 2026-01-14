@@ -39,7 +39,18 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 如果路由有 hash，滚动到对应元素
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth'
+      }
+    }
+    // 否则滚动到顶部
+    return { top: 0, behavior: 'smooth' }
+  }
 })
 
 export default router
