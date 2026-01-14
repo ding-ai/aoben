@@ -1,5 +1,5 @@
 <template>
-  <section class="relative w-full min-h-screen flex items-center overflow-hidden">
+  <section class="relative w-full min-h-screen-safe flex items-center overflow-hidden">
     <!-- 背景图 -->
     <div
       class="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -7,10 +7,10 @@
     ></div>
 
     <!-- 内容区域 -->
-    <div class="container-main relative z-10">
+    <div class="container-main relative z-10 banner-content">
       <div class="max-w-xl lg:max-w-2xl">
         <h1
-          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white font-bold leading-tight mb-6 sm:mb-8 animate-fade-in-up tracking-widest"
+          class="text-hero text-white font-bold leading-tight mb-6 sm:mb-8 animate-fade-in-up tracking-widest"
           style="font-family: 'MiSans'; font-weight: 700"
         >
           关于我们
@@ -18,7 +18,7 @@
 
         <!-- 副标题 -->
         <p
-          class="text-base sm:text-lg lg:text-xl text-white/60 leading-relaxed max-w-lg animate-fade-in-up tracking-wide"
+          class="text-subtitle text-white/60 leading-relaxed max-w-lg animate-fade-in-up tracking-wide"
           style="animation-delay: 0.2s; font-family: 'MiSans'; font-weight: 300"
         >
           了解集团最新消息, 以便于我们合作
@@ -41,3 +41,14 @@
 <script setup>
 import bannerBg from '@/assets/images/关于我们_slices/官网正品 1.png'
 </script>
+
+<style scoped>
+.banner-content {
+  padding-top: clamp(4rem, 10vh, 8rem);
+}
+
+.min-h-screen-safe {
+  /* 手机最小400px，中间按42vw缩放，最大800px */
+  min-height: clamp(400px, 42vw, 800px);
+}
+</style>

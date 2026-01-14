@@ -9,43 +9,305 @@
   box-sizing: border-box;
 }
 
-/* html 基础设置 */
+/* html 基础设置 - 使用 clamp() 实现响应式根字体 */
 html {
-  font-size: 16px; /* 根字体大小，便于 rem 单位计算 */
-  scroll-behavior: smooth; /* 页面滚动平滑过渡 */
+  /* 根字体：手机14px，平板到桌面平滑过渡，最大18px */
+  font-size: clamp(14px, 2vw + 8px, 18px);
+  scroll-behavior: smooth;
 }
 
 /* body 基础设置 */
 body {
-  font-family:                /* 全局字体设置 */
+  font-family:
     'MiSans',
-    /* 自定义字体，首选 */ -apple-system,
-    /* Mac/iOS 系统默认字体 */ BlinkMacSystemFont,
-    /* Chrome/Safari */ 'Segoe UI',
-    /* Windows 系统字体 */ Roboto,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
     'Helvetica Neue',
     Arial,
     'PingFang SC',
     'Hiragino Sans GB',
     'Microsoft YaHei',
-    sans-serif; /* 备用字体 */
-  -webkit-font-smoothing: antialiased; /* macOS/Chrome 字体抗锯齿 */
-  -moz-osx-font-smoothing: grayscale; /* macOS/Firefox 字体抗锯齿 */
-  line-height: 1.6; /* 全局行高，保证文本间距舒适 */
-  color: #333; /* 全局文本颜色 */
-  background-color: #fff; /* 全局背景色 */
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  /* 防止移动端横向滚动 */
+  overflow-x: hidden;
+}
+
+/* ==================== 响应式字体工具类 ==================== */
+
+/* 超大标题：用于 Banner 主标题 */
+.text-hero {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  line-height: 1.1;
+}
+
+/* 页面标题：用于各 section 标题 */
+.text-section-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+/* 副标题 */
+.text-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.5;
+}
+
+/* 正文大字 */
+.text-body-lg {
+  font-size: clamp(0.9rem, 1.5vw, 1.125rem);
+  line-height: 1.8;
+}
+
+/* 正文 */
+.text-body {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  line-height: 1.8;
+}
+
+/* 小字 */
+.text-small {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  line-height: 1.6;
+}
+
+/* 数字统计 */
+.text-stat {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
 }
 
 /* ==================== 容器布局 ==================== */
 
 /* 主容器：内容居中，响应式内边距，最大宽度 1280px */
 .container-main {
-  @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12; /* Tailwind 工具类：宽度100%，水平居中，响应式内边距 */
-  max-width: 1280px; /* 最大宽度限制，防止大屏拉伸太宽 */
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  /* 响应式内边距：使用 clamp 平滑过渡 */
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
 }
 
 /* 宽屏容器：用于需要更宽布局的页面，最大宽度 1440px */
 .container-wide {
-  @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12; /* 同上：全宽 + 居中 + 响应式内边距 */
-  max-width: 1440px; /* 更宽的最大宽度限制 */
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+}
+
+/* ==================== 响应式间距工具类 ==================== */
+
+/* Section 垂直间距 */
+.section-padding {
+  padding-top: clamp(3rem, 8vw, 6rem);
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+/* 元素间距 */
+.gap-responsive {
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* ==================== 响应式按钮 ==================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.625rem, 1.5vw, 0.875rem) clamp(1.25rem, 3vw, 2rem);
+  background: linear-gradient(135deg, #e85a5a 0%, #d14545 100%);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(232, 90, 90, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 90, 90, 0.4);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.625rem, 1.5vw, 0.875rem) clamp(1.25rem, 3vw, 2rem);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 2rem;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* ==================== 全屏高度 ==================== */
+
+.min-h-screen-safe {
+  /* 手机最小400px，中间按42vw缩放，最大800px */
+  min-height: clamp(400px, 42vw, 800px);
+}
+
+/* 如果需要真正的全屏高度，使用这个类 */
+.min-h-screen-full {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ==================== 图片响应式 ==================== */
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* ==================== 网格布局响应式 ==================== */
+
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==================== 动画效果 ==================== */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ==================== 移动端触摸优化 ==================== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* 移动端增大点击区域 */
+  .btn-primary,
+  .btn-outline,
+  .nav-link {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ==================== 横屏适配 ==================== */
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .min-h-screen-safe {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+}
+
+/* ==================== 超大屏幕适配 ==================== */
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+
+  .container-main,
+  .container-wide {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* ==================== 打印样式 ==================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+  }
 }

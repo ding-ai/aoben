@@ -27,7 +27,12 @@
           <button class="profile-btn">
             <span>了解详情</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
             </svg>
           </button>
         </div>
@@ -51,18 +56,22 @@
     </section>
 
     <!-- 品牌矩阵 -->
-    <section class="py-16 sm:py-20 lg:py-28 bg-white">
+    <section class="section-padding bg-white">
       <div class="container-main">
         <h2 class="section-title">品牌矩阵</h2>
         <p class="section-subtitle">
           奥本瑜伽、奥本美肤SPA、奥本科技医美等多元品牌，构建完整健康美丽生态
         </p>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
-          <div v-for="brand in brands" :key="brand"
-            class="aspect-square rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center p-4 sm:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer group">
+        <div class="grid-responsive-4">
+          <div
+            v-for="brand in brands"
+            :key="brand"
+            class="aspect-square rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center p-4 sm:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer group"
+          >
             <span
-              class="text-gray-400 text-sm sm:text-base font-medium text-center group-hover:text-red-500 transition-colors">
+              class="text-body text-gray-400 font-medium text-center group-hover:text-red-500 transition-colors"
+            >
               {{ brand }}
             </span>
           </div>
@@ -97,10 +106,12 @@ const brands = [
 </script>
 
 <style scoped>
+/* ==================== 集团简介区域 ==================== */
 .group-profile {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  /* 手机最小500px，中间按42vw缩放，最大800px */
+  min-height: clamp(500px, 42vw, 800px);
   background-color: #fafafa;
   background-image: url('../../assets/images/首页_slices/Frame 1000011613.png');
   background-size: cover;
@@ -112,10 +123,10 @@ const brands = [
 .profile-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 1rem 60px;
+  padding: clamp(4rem, 10vw, 7.5rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: clamp(2rem, 4vw, 2.5rem);
   position: relative;
   z-index: 1;
 }
@@ -123,8 +134,6 @@ const brands = [
 @media (min-width: 1024px) {
   .profile-container {
     grid-template-columns: 1fr 1.2fr auto;
-    padding: 120px 3rem 80px;
-    gap: 40px;
     align-items: center;
   }
 }
@@ -135,49 +144,43 @@ const brands = [
 }
 
 .profile-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: bold;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   letter-spacing: 0.1em;
 }
 
-@media (min-width: 1024px) {
-  .profile-title {
-    font-size: 2.5rem;
-  }
-}
-
 .profile-subtitle {
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
   color: #999;
   letter-spacing: 0.2em;
-  margin-bottom: 30px;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
   font-family: serif;
   font-style: italic;
 }
 
 .profile-text {
   color: #666;
-  font-size: 0.875rem;
+  font-size: clamp(0.8rem, 1.2vw, 0.875rem);
   line-height: 2;
-  margin-bottom: 30px;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .profile-text p {
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .profile-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
+  gap: 0.5rem;
+  padding: clamp(0.625rem, 1.5vw, 0.75rem) clamp(1.25rem, 2.5vw, 1.75rem);
   background: linear-gradient(135deg, #e85a5a 0%, #d14545 100%);
   color: white;
   border: none;
-  border-radius: 25px;
-  font-size: 0.875rem;
+  border-radius: 1.5rem;
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
@@ -199,14 +202,8 @@ const brands = [
 .profile-image img {
   max-width: 100%;
   height: auto;
-  max-height: 500px;
+  max-height: clamp(300px, 50vw, 600px);
   object-fit: contain;
-}
-
-@media (min-width: 1024px) {
-  .profile-image img {
-    max-height: 600px;
-  }
 }
 
 /* 右侧数据 */
@@ -214,21 +211,21 @@ const brands = [
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: clamp(1rem, 2vw, 1.25rem);
   justify-content: center;
 }
 
 @media (min-width: 1024px) {
   .profile-stats {
     flex-direction: column;
-    gap: 30px;
+    gap: clamp(1.5rem, 3vw, 2rem);
     justify-content: flex-start;
   }
 }
 
 .stat-item {
   text-align: center;
-  padding: 15px 20px;
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
 }
 
 @media (min-width: 1024px) {
@@ -238,21 +235,15 @@ const brands = [
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
   color: #e85a5a;
   line-height: 1;
-  margin-bottom: 8px;
-}
-
-@media (min-width: 1024px) {
-  .stat-number {
-    font-size: 3rem;
-  }
+  margin-bottom: 0.5rem;
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
   color: #999;
 }
 
@@ -261,17 +252,26 @@ const brands = [
   position: absolute;
   top: 0;
   right: 0;
-  width: 200px;
-  height: 300px;
+  width: clamp(120px, 20vw, 300px);
+  height: clamp(180px, 30vw, 450px);
   background: linear-gradient(180deg, #e85a5a 0%, #ff8a80 100%);
   border-radius: 0 0 0 100%;
   z-index: 0;
 }
 
-@media (min-width: 1024px) {
-  .red-decoration {
-    width: 300px;
-    height: 450px;
-  }
+/* ==================== Section 通用样式 ==================== */
+.section-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  color: #666;
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 </style>
