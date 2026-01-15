@@ -2,15 +2,22 @@
   <footer class="bg-[#111111] text-white pt-12 mb-8 font-[MiSans]">
     <div class="container-main mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl h">
       <!-- 顶部: Logo 与 特性 Slogan -->
-      <div class="flex flex-col md:flex-row justify-between items-center border-b border-white/10 pb-12 mb-12 gap-8">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center border-b border-white/10 pb-12 mb-12 gap-8"
+      >
         <!-- Logo -->
         <div class="w-40 sm:w-48">
-          <img src="@/assets/images/首页_slices/加粗细(1).png" alt="AOBEN" class="w-full brightness-0 invert" />
+          <img
+            src="@/assets/images/首页_slices/加粗细(1).png"
+            alt="AOBEN"
+            class="w-full brightness-0 invert"
+          />
         </div>
 
         <!-- Slogans -->
         <div
-          class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 md:gap-16 text-sm sm:text-base text-gray-300 top">
+          class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 md:gap-16 text-sm sm:text-base text-gray-300 top"
+        >
           <div class="flex items-center gap-2">
             <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Vector.png" alt="" />
             <span>门店随心选</span>
@@ -27,14 +34,23 @@
       </div>
 
       <!-- 中间: 联系信息 与 二维码 -->
-      <div class="flex flex-col lg:flex-row justify-between gap-12 mb-16" style="margin-top: 20px">
+      <div
+        class="flex flex-col-reverse lg:flex-row justify-between gap-12 mb-16"
+        style="margin-top: 20px"
+      >
         <!-- 左侧: 联系信息 -->
-        <div class="space-y-8 flex-1">
+        <div class="space-y-8 flex-1 flex-shrink-0">
           <!-- 电话 -->
           <div class="group">
-            <h4 class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200" style="margin-bottom: 10px">
-              <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png" alt=""
-                style="width: 20px" />
+            <h4
+              class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200"
+              style="margin-bottom: 10px"
+            >
+              <img
+                src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png"
+                alt=""
+                style="width: 20px"
+              />
               联系我们:
             </h4>
             <p class="pl-6 text-gray-400 text-sm">400-8699-626</p>
@@ -42,9 +58,15 @@
           <br />
           <!-- 地址 -->
           <div class="group">
-            <h4 class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200" style="margin-bottom: 10px">
-              <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png" alt=""
-                style="width: 20px" />
+            <h4
+              class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200"
+              style="margin-bottom: 10px"
+            >
+              <img
+                src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png"
+                alt=""
+                style="width: 20px"
+              />
               总部地址:
             </h4>
             <p class="pl-6 text-gray-400 text-sm leading-relaxed">
@@ -54,9 +76,15 @@
           <br />
           <!-- 邮编 -->
           <div class="group">
-            <h4 class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200" style="margin-bottom: 10px">
-              <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png" alt=""
-                style="width: 20px" />
+            <h4
+              class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200"
+              style="margin-bottom: 10px"
+            >
+              <img
+                src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png"
+                alt=""
+                style="width: 20px"
+              />
               邮编:
             </h4>
             <p class="pl-6 text-gray-400 text-sm">215300</p>
@@ -65,23 +93,34 @@
 
         <!-- 右侧: 关注我们 (二维码) -->
         <div class="flex flex-col items-start lg:items-start" style="margin-top: 40px">
-          <h4 class="text-base font-medium mb-4 text-gray-200" style="margin-bottom: 15px; font-family: MiSans">
+          <h4
+            class="text-base font-medium mb-4 text-gray-200"
+            style="margin-bottom: 15px; font-family: MiSans"
+          >
             关注我们
           </h4>
           <div class="flex gap-6">
             <div class="text-center group">
               <div
-                class="bg-white p-1.5 w-24 h-24 mb-2 rounded-sm flex items-center justify-center overflow-hidden transition-transform transform group-hover:scale-105">
-                <img src="@/assets/images/首页_slices/Group 1000011063.png" alt="奥本运动小程序"
-                  class="w-full h-full object-contain" />
+                class="bg-white p-1.5 w-24 h-24 mb-2 rounded-sm flex items-center justify-center overflow-hidden transition-transform transform group-hover:scale-105"
+              >
+                <img
+                  src="@/assets/images/首页_slices/Group 1000011063.png"
+                  alt="奥本运动小程序"
+                  class="w-full h-full object-contain"
+                />
               </div>
               <p class="text-xs text-gray-400">奥本运动小程序</p>
             </div>
             <div class="text-center group">
               <div
-                class="bg-white p-1.5 w-24 h-24 mb-2 rounded-sm flex items-center justify-center overflow-hidden transition-transform transform group-hover:scale-105">
-                <img src="@/assets/images/首页_slices/Group 1000011063.png" alt="奥本公众号"
-                  class="w-full h-full object-contain" />
+                class="bg-white p-1.5 w-24 h-24 mb-2 rounded-sm flex items-center justify-center overflow-hidden transition-transform transform group-hover:scale-105"
+              >
+                <img
+                  src="@/assets/images/首页_slices/Group 1000011063.png"
+                  alt="奥本公众号"
+                  class="w-full h-full object-contain"
+                />
               </div>
               <p class="text-xs text-gray-400">奥本公众号</p>
             </div>
@@ -110,7 +149,8 @@
 
 <style scoped>
 .h {
-  height: 400px;
+  min-height: 400px;
+  height: auto;
 }
 
 .top {
