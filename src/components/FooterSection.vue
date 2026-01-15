@@ -34,12 +34,9 @@
       </div>
 
       <!-- 中间: 联系信息 与 二维码 -->
-      <div
-        class="flex flex-col-reverse lg:flex-row justify-between gap-12 mb-16"
-        style="margin-top: 20px"
-      >
+      <div class="contact-section relative mb-16" style="margin-top: 20px">
         <!-- 左侧: 联系信息 -->
-        <div class="space-y-8 flex-1 flex-shrink-0">
+        <div class="space-y-8">
           <!-- 电话 -->
           <div class="group">
             <h4
@@ -69,7 +66,7 @@
               />
               总部地址:
             </h4>
-            <p class="pl-6 text-gray-400 text-sm leading-relaxed">
+            <p class="pl-6 text-gray-400 text-sm leading-relaxed address-text">
               江苏省苏州市昆山市玉山镇萧林路2024号B座1304
             </p>
           </div>
@@ -92,7 +89,7 @@
         </div>
 
         <!-- 右侧: 关注我们 (二维码) -->
-        <div class="flex flex-col items-start lg:items-start" style="margin-top: 40px">
+        <div class="qrcode-section" style="margin-top: 40px">
           <h4
             class="text-base font-medium mb-4 text-gray-200"
             style="margin-bottom: 15px; font-family: MiSans"
@@ -155,5 +152,42 @@
 
 .top {
   padding: 30px;
+}
+
+.contact-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.qrcode-section {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.address-text {
+  max-width: 200px;
+  white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+  .address-text {
+    max-width: 160px;
+    white-space: normal;
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 640px) {
+  .qrcode-section {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 </style>
