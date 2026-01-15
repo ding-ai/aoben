@@ -280,7 +280,7 @@ const pastNews = [
   transition: transform 0.3s;
 }
 
-.past-news-item:hover .past-news-image img {
+.past-news-image:hover img {
   transform: scale(1.05);
 }
 
@@ -377,6 +377,7 @@ const pastNews = [
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
