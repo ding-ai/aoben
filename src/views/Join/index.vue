@@ -106,35 +106,17 @@
         <h2 class="business-title">五大核心业务板块</h2>
         <p class="business-subtitle">BUSINESS</p>
       </div>
+
       <div class="business-grid">
-        <div class="business-card" v-for="item in businessList" :key="item.title">
+        <div class="business-item" v-for="item in businessList" :key="item.title">
           <div class="business-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                v-if="item.title === '运动塑形'"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-              />
-              <path
-                v-else-if="item.title === '美肤养护'"
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-              <path
-                v-else-if="item.title === '产后恢复'"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"
-              />
-              <path
-                v-else-if="item.title === '熟龄管理'"
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-              />
-              <path
-                v-else
-                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"
-              />
-            </svg>
+            <img src="/src/assets/images/加盟奥本_slices/Frame 1000011172.png" :alt="item.title" />
           </div>
-          <div class="business-content">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.desc }}</p>
+          <div class="business-card">
+            <div class="business-content">
+              <h3 style="text-align: center">{{ item.title }}</h3>
+              <p>{{ item.desc }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -551,6 +533,7 @@ const nextPage = () => {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -562,6 +545,7 @@ const nextPage = () => {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -754,27 +738,26 @@ const nextPage = () => {
 
 /* ==================== 五大核心业务板块 ==================== */
 .business-section {
-  min-height: clamp(400px, 32vw, 600px);
-  padding: clamp(3rem, 6vw, 5rem) 0;
+  padding: 80px 0;
   background-color: #f8f8f8;
 }
 
 .business-header {
   text-align: center;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 48px;
 }
 
 .business-title {
   font-family: 'MiSans';
-  font-size: clamp(1.5rem, 4vw, 2.375rem);
+  font-size: 38px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 .business-subtitle {
   font-family: 'Times New Roman', serif;
-  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-size: 32px;
   color: #ccc;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -782,31 +765,48 @@ const nextPage = () => {
 
 .business-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
-  padding-top: clamp(30px, 4vw, 40px); /* 给图标留出空间 */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: stretch;
 }
 
-@media (min-width: 640px) {
-  .business-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.business-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
-@media (min-width: 1024px) {
-  .business-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+.business-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.business-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
 
 .business-card {
   background: white;
-  border-radius: clamp(0.75rem, 1.5vw, 1rem);
-  padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: 12px;
+  padding: 24px 20px;
+  border: 1px solid red;
   position: relative;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  margin-top: clamp(20px, 3vw, 30px); /* 图标悬浮的空间 */
+  width: 100%;
+  flex: 1;
 }
 
 .business-card:hover {
@@ -814,44 +814,118 @@ const nextPage = () => {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.business-icon {
-  width: clamp(40px, 5vw, 56px);
-  height: clamp(40px, 5vw, 56px);
-  border-radius: 50%;
-  background-color: #e85a5a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: clamp(-20px, -3vw, -28px);
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 4px 12px rgba(232, 90, 90, 0.3);
-}
-
-.business-icon svg {
-  width: 50%;
-  height: 50%;
-  color: white;
-}
-
-.business-content {
-  padding-top: clamp(0.5rem, 1vw, 0.75rem);
-  text-align: center;
+.business-item:hover .business-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(232, 90, 90, 0.4);
 }
 
 .business-content h3 {
   font-family: 'MiSans';
-  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-size: 18px;
   font-weight: 600;
   color: #333;
-  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: 12px;
 }
 
 .business-content p {
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-size: 13px;
   color: #999;
   line-height: 1.6;
+  /* text-align: center; */
+}
+
+/* 平板端 640px - 1024px：3列居中 */
+@media (max-width: 1024px) {
+  .business-section {
+    padding: 60px 0;
+  }
+
+  .business-header {
+    margin-bottom: 40px;
+  }
+
+  .business-title {
+    font-size: 32px;
+  }
+
+  .business-subtitle {
+    font-size: 26px;
+  }
+
+  .business-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .business-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+
+  .business-card {
+    padding: 20px 16px;
+    min-height: 140px;
+  }
+
+  .business-content h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .business-content p {
+    font-size: 12px;
+  }
+}
+
+/* 手机端 <640px：2列 */
+@media (max-width: 640px) {
+  .business-section {
+    padding: 40px 16px;
+  }
+
+  .business-header {
+    margin-bottom: 32px;
+  }
+
+  .business-title {
+    font-size: 24px;
+  }
+
+  .business-subtitle {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .business-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  .business-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 8px;
+  }
+
+  .business-card {
+    padding: 16px 12px;
+    min-height: 120px;
+    border-radius: 8px;
+  }
+
+  .business-content h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .business-content p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
 }
 
 /* ==================== 五大核心优势 ==================== */
