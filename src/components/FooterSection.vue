@@ -1,105 +1,89 @@
 <template>
-  <footer class="bg-neutral-900 text-white">
-    <!-- 主体内容 -->
-    <div class="container-main section-padding">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-responsive">
-        <!-- 品牌信息 -->
-        <div class="lg:col-span-1">
-          <img
-            src="../assets/images/logo.png"
-            alt="AOBEN"
-            class="h-10 sm:h-12 mb-6 brightness-0 invert"
-          />
-          <p class="text-gray-400 text-body leading-relaxed mb-6">
-            奥本集团专注于瑜伽、养生、医美领域，融合科技医美、美容养生、运动美学三位一体的理念。
-          </p>
+  <footer class="bg-[#111111] text-white pt-16 pb-8">
+    <div class="container-main mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl h">
+      <!-- 顶部: Logo 与 特性 Slogan -->
+      <div class="flex flex-col md:flex-row justify-between items-center border-b border-white/10 pb-12 mb-12 gap-8">
+        <!-- Logo -->
+        <div class="w-40 sm:w-48">
+          <img src="@/assets/images/首页_slices/加粗细(1).png" alt="AOBEN" class="w-full brightness-0 invert" />
         </div>
 
-        <!-- 快速链接 -->
-        <div>
-          <h4 class="text-body-lg font-semibold mb-6">快速链接</h4>
-          <ul class="space-y-3">
-            <li v-for="link in quickLinks" :key="link.name">
-              <router-link
-                :to="link.path"
-                class="text-gray-400 text-body hover:text-white transition-colors inline-flex items-center gap-2 group"
-              >
-                <span
-                  class="w-1.5 h-1.5 rounded-full bg-brand opacity-0 group-hover:opacity-100 transition-opacity"
-                ></span>
-                {{ link.name }}
-              </router-link>
-            </li>
-          </ul>
+        <!-- Slogans -->
+        <div
+          class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 md:gap-16 text-sm sm:text-base text-gray-300 top">
+          <div class="flex items-center gap-2">
+            <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Vector.png" alt="" />
+            <span>门店随心选</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Vector.png" alt="" />
+            <span>教练无忧换</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Vector.png" alt="" />
+            <span>课程自由约</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中间: 联系信息 与 二维码 -->
+      <div class="flex flex-col lg:flex-row justify-between gap-12 mb-16" style="margin-top: 20px">
+        <!-- 左侧: 联系信息 -->
+        <div class="space-y-8 flex-1">
+          <!-- 电话 -->
+          <div class="group">
+            <h4 class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200" style="margin-bottom: 10px">
+              <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png" alt=""
+                style="width: 20px" />
+              联系我们:
+            </h4>
+            <p class="pl-6 text-gray-400 text-sm">400-8699-626</p>
+          </div>
+          <br />
+          <!-- 地址 -->
+          <div class="group">
+            <h4 class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200" style="margin-bottom: 10px">
+              <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png" alt=""
+                style="width: 20px" />
+              总部地址:
+            </h4>
+            <p class="pl-6 text-gray-400 text-sm leading-relaxed">
+              江苏省苏州市昆山市玉山镇萧林路2024号B座1304
+            </p>
+          </div>
+          <br />
+          <!-- 邮编 -->
+          <div class="group">
+            <h4 class="text-base font-medium mb-1 flex items-center gap-2 text-gray-200" style="margin-bottom: 10px">
+              <img src="D:\aoben\aoben_web\aoben\src\assets\images\首页_slices\Frame@2x(1).png" alt=""
+                style="width: 20px" />
+              邮编:
+            </h4>
+            <p class="pl-6 text-gray-400 text-sm">215300</p>
+          </div>
         </div>
 
-        <!-- 联系信息 -->
-        <div>
-          <h4 class="text-body-lg font-semibold mb-6">联系我们</h4>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
+        <!-- 右侧: 关注我们 (二维码) -->
+        <div class="flex flex-col items-start lg:items-start" style="margin-top: 40px">
+          <h4 class="text-base font-medium mb-4 text-gray-200" style="margin-bottom: 15px; font-family: MiSans">
+            关注我们
+          </h4>
+          <div class="flex gap-6">
+            <div class="text-center group">
               <div
-                class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5"
-              >
-                <img
-                  src="../assets/images/Frame(1).png"
-                  alt=""
-                  class="w-4 h-4 brightness-0 invert"
-                />
+                class="bg-white p-1.5 w-24 h-24 mb-2 rounded-sm flex items-center justify-center overflow-hidden transition-transform transform group-hover:scale-105">
+                <img src="@/assets/images/首页_slices/Group 1000011063.png" alt="奥本运动小程序"
+                  class="w-full h-full object-contain" />
               </div>
-              <div>
-                <p class="text-small text-gray-500 mb-1">服务热线</p>
-                <p class="text-white font-medium">400-8699-626</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <div
-                class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5"
-              >
-                <img
-                  src="../assets/images/Frame(2).png"
-                  alt=""
-                  class="w-4 h-4 brightness-0 invert"
-                />
-              </div>
-              <div>
-                <p class="text-small text-gray-500 mb-1">总部地址</p>
-                <p class="text-gray-300 text-body">江苏省苏州市昆山市玉山镇萧林路2024号B座1304</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <div
-                class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5"
-              >
-                <img
-                  src="../assets/images/Frame(3).png"
-                  alt=""
-                  class="w-4 h-4 brightness-0 invert"
-                />
-              </div>
-              <div>
-                <p class="text-small text-gray-500 mb-1">邮编</p>
-                <p class="text-gray-300 text-body">215300</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 关注我们 -->
-        <div>
-          <h4 class="text-body-lg font-semibold mb-6">关注我们</h4>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="text-center">
-              <div class="bg-white rounded-xl p-3 mb-2">
-                <img src="../assets/images/Group 1000011063.png" alt="微信公众号" class="w-full" />
-              </div>
-              <p class="text-small text-gray-500">微信公众号</p>
+              <p class="text-xs text-gray-400">奥本运动小程序</p>
             </div>
-            <div class="text-center">
-              <div class="bg-white rounded-xl p-3 mb-2">
-                <img src="../assets/images/Group 1000011067.png" alt="小程序" class="w-full" />
+            <div class="text-center group">
+              <div
+                class="bg-white p-1.5 w-24 h-24 mb-2 rounded-sm flex items-center justify-center overflow-hidden transition-transform transform group-hover:scale-105">
+                <img src="@/assets/images/首页_slices/Group 1000011063.png" alt="奥本公众号"
+                  class="w-full h-full object-contain" />
               </div>
-              <p class="text-small text-gray-500">小程序</p>
+              <p class="text-xs text-gray-400">奥本公众号</p>
             </div>
           </div>
         </div>
@@ -122,12 +106,14 @@
   </footer>
 </template>
 
-<script setup>
-const quickLinks = [
-  { name: '首页', path: '/' },
-  { name: '关于我们', path: '/about' },
-  { name: '新闻资讯', path: '/news' },
-  { name: '加盟奥本', path: '/join' },
-  { name: '联系我们', path: '/contact' },
-]
-</script>
+<script setup></script>
+
+<style scoped>
+.h {
+  height: 400px;
+}
+
+.top {
+  padding: 30px;
+}
+</style>

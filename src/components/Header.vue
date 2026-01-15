@@ -1,16 +1,27 @@
 <template>
-  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-    :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'">
+  <header
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+    :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'"
+  >
     <div class="header-container">
       <!-- Logo -->
       <router-link to="/" class="flex-shrink-0">
-        <img src="../assets/images/首页_slices/加粗细@2x.png" alt="AOBEN奥本" class="logo-custom"
-          :class="scrolled ? 'brightness-0' : ''" />
+        <img
+          src="../assets/images/首页_slices/加粗细@2x.png"
+          alt="AOBEN奥本"
+          class="logo-custom"
+          :class="scrolled ? 'brightness-0' : ''"
+        />
       </router-link>
 
       <nav class="hidden lg:flex items-center gap-6 xl:gap-12">
-        <router-link v-for="item in navItems" :key="item.path" :to="item.path" class="nav-link"
-          :class="scrolled ? 'text-gray-700' : 'text-white'">
+        <router-link
+          v-for="item in navItems"
+          :key="item.path"
+          :to="item.path"
+          class="nav-link"
+          :class="scrolled ? 'text-gray-700' : 'text-white'"
+        >
           {{ item.name }}
         </router-link>
 
@@ -19,25 +30,39 @@
         <div class="group relative">
           <div
             class="flex items-center gap-3 px-6 py-2.5 rounded-full border border-white/60 cursor-pointer transition-all hover:border-white"
-            :class="scrolled ? 'border-gray-300 hover:border-gray-400' : ''">
-            <div class="w-8 h-8 rounded-full border border-current flex items-center justify-center"
-              :class="scrolled ? 'text-gray-600' : 'text-white'">
+            :class="scrolled ? 'border-gray-300 hover:border-gray-400' : ''"
+          >
+            <div
+              class="w-8 h-8 rounded-full border border-current flex items-center justify-center"
+              :class="scrolled ? 'text-gray-600' : 'text-white'"
+            >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
               </svg>
             </div>
-            <span class="text-base font-medium" :class="scrolled ? 'text-gray-700' : 'text-white'">下载APP</span>
+            <span class="text-base font-medium" :class="scrolled ? 'text-gray-700' : 'text-white'"
+              >下载APP</span
+            >
           </div>
 
           <div
-            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible transition-all duration-300 transform translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-            <div class="relative bg-white rounded-2xl p-5 shadow-[0_10px_40px_rgba(0,0,0,0.15)] w-48">
+            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible transition-all duration-300 transform translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0"
+          >
+            <div
+              class="relative bg-white rounded-2xl p-5 shadow-[0_10px_40px_rgba(0,0,0,0.15)] w-48"
+            >
               <div
-                class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 border-t border-l border-gray-50">
-              </div>
+                class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 border-t border-l border-gray-50"
+              ></div>
 
               <div
-                class="w-full aspect-square bg-[#f07070] rounded-xl mb-3 flex items-center justify-center overflow-hidden">
+                class="w-full aspect-square bg-[#f07070] rounded-xl mb-3 flex items-center justify-center overflow-hidden"
+              >
                 <span class="text-white text-xs">二维码图片</span>
               </div>
 
@@ -50,33 +75,56 @@
       </nav>
 
       <!-- 移动端菜单按钮 -->
-      <button class="lg:hidden w-10 h-10 flex items-center justify-center" @click="menuOpen = !menuOpen">
+      <button
+        class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-all relative z-[100] min-h-[44px] min-w-[44px]"
+        :class="scrolled ? 'bg-white/80 backdrop-blur-sm shadow-sm' : ''"
+        @click="menuOpen = !menuOpen"
+      >
         <div class="w-6 flex flex-col gap-1.5">
-          <span class="block h-0.5 rounded-full transition-all" :class="[
-            scrolled ? 'bg-gray-800' : 'bg-white',
-            menuOpen ? 'rotate-45 translate-y-2' : '',
-          ]"></span>
-          <span class="block h-0.5 rounded-full transition-all"
-            :class="[scrolled ? 'bg-gray-800' : 'bg-white', menuOpen ? 'opacity-0' : '']"></span>
-          <span class="block h-0.5 rounded-full transition-all" :class="[
-            scrolled ? 'bg-gray-800' : 'bg-white',
-            menuOpen ? '-rotate-45 -translate-y-2' : '',
-          ]"></span>
+          <span
+            class="block h-0.5 rounded-full transition-all"
+            :class="[
+              scrolled ? 'bg-gray-800' : 'bg-white',
+              menuOpen ? 'rotate-45 translate-y-2' : '',
+            ]"
+          ></span>
+          <span
+            class="block h-0.5 rounded-full transition-all"
+            :class="[scrolled ? 'bg-gray-800' : 'bg-white', menuOpen ? 'opacity-0' : '']"
+          ></span>
+          <span
+            class="block h-0.5 rounded-full transition-all"
+            :class="[
+              scrolled ? 'bg-gray-800' : 'bg-white',
+              menuOpen ? '-rotate-45 -translate-y-2' : '',
+            ]"
+          ></span>
         </div>
       </button>
     </div>
+  </header>
 
-    <!-- 移动端菜单 -->
+  <!-- 移动端菜单 - 使用 Teleport 避免 backdrop-blur 创建的层叠上下文问题 -->
+  <Teleport to="body">
     <transition name="menu-slide">
       <div v-if="menuOpen" class="mobile-menu lg:hidden">
         <nav class="mobile-nav">
           <ul class="mobile-nav-list">
             <li v-for="item in navItems" :key="item.path">
-              <router-link :to="item.path" class="mobile-nav-link" :class="{ active: $route.path === item.path }"
-                @click="menuOpen = false">
+              <router-link
+                :to="item.path"
+                class="mobile-nav-link"
+                :class="{ active: $route.path === item.path }"
+                @click="menuOpen = false"
+              >
                 <span>{{ item.name }}</span>
                 <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </router-link>
             </li>
@@ -84,7 +132,12 @@
           <div class="mobile-nav-footer">
             <button class="mobile-download-btn">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
               </svg>
               <span>下载APP</span>
             </button>
@@ -92,7 +145,7 @@
         </nav>
       </div>
     </transition>
-  </header>
+  </Teleport>
 </template>
 
 <script setup>
@@ -182,7 +235,10 @@ watch(
   width: clamp(120px, 15vw, 200px);
   height: auto;
 }
+</style>
 
+<!-- 移动端菜单样式需要非 scoped，因为使用了 Teleport -->
+<style>
 /* ==================== 移动端菜单 ==================== */
 .mobile-menu {
   position: fixed;
@@ -191,7 +247,7 @@ watch(
   right: 0;
   bottom: 0;
   background: white;
-  z-index: 40;
+  z-index: 9999;
   overflow-y: auto;
 }
 
