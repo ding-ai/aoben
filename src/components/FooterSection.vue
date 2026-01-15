@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-[#111111] text-white pt-16 pb-8">
+  <footer class="bg-[#111111] text-white pt-12 mb-8 font-[MiSans]">
     <div class="container-main mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl h">
       <!-- 顶部: Logo 与 特性 Slogan -->
       <div class="flex flex-col md:flex-row justify-between items-center border-b border-white/10 pb-12 mb-12 gap-8">
