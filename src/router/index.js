@@ -33,6 +33,11 @@ const routes = [
         name: 'Contact',
         component: () => import('@/views/Contact/index.vue'),
       },
+      {
+        path: 'download',
+        name: 'Download',
+        component: () => import('@/views/Download/index.vue'),
+      },
     ],
   },
 ]

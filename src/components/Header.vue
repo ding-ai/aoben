@@ -27,51 +27,7 @@
 
         <span :class="scrolled ? 'text-gray-300' : 'text-white/30'">|</span>
 
-        <div class="group relative">
-          <div
-            class="flex items-center gap-3 px-6 py-2.5 rounded-full border border-white/60 cursor-pointer transition-all hover:border-white"
-            :class="scrolled ? 'border-gray-300 hover:border-gray-400' : ''"
-          >
-            <div
-              class="w-8 h-8 rounded-full border border-current flex items-center justify-center"
-              :class="scrolled ? 'text-gray-600' : 'text-white'"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
-            <span class="text-base font-medium" :class="scrolled ? 'text-gray-700' : 'text-white'"
-              >下载APP</span
-            >
-          </div>
-
-          <div
-            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible transition-all duration-300 transform translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0"
-          >
-            <div
-              class="relative bg-white rounded-2xl p-5 shadow-[0_10px_40px_rgba(0,0,0,0.15)] w-48"
-            >
-              <div
-                class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 border-t border-l border-gray-50"
-              ></div>
-
-              <div
-                class="w-full aspect-square bg-[#f07070] rounded-xl mb-3 flex items-center justify-center overflow-hidden"
-              >
-                <span class="text-white text-xs">二维码图片</span>
-              </div>
-
-              <p class="text-gray-400 text-[12px] text-center whitespace-nowrap">
-                扫描二维码下载APP
-              </p>
-            </div>
-          </div>
-        </div>
+        <router-link to="/download" class="download-btn"> 下载APP </router-link>
       </nav>
 
       <!-- 移动端菜单按钮 -->
@@ -104,45 +60,25 @@
     </div>
   </header>
 
-  <!-- 移动端菜单 - 使用 Teleport 避免 backdrop-blur 创建的层叠上下文问题 -->
+  <!-- 移动端菜单 -->
   <Teleport to="body">
     <transition name="menu-slide">
       <div v-if="menuOpen" class="mobile-menu lg:hidden">
-        <nav class="mobile-nav">
-          <ul class="mobile-nav-list">
-            <li v-for="item in navItems" :key="item.path">
-              <router-link
-                :to="item.path"
-                class="mobile-nav-link"
-                :class="{ active: $route.path === item.path }"
-                @click="menuOpen = false"
-              >
-                <span>{{ item.name }}</span>
-                <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </router-link>
-            </li>
-          </ul>
-          <div class="mobile-nav-footer">
-            <button class="mobile-download-btn">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-              <span>下载APP</span>
-            </button>
-          </div>
-        </nav>
+        <div class="mobile-menu-content">
+          <router-link
+            v-for="item in navItems"
+            :key="item.path"
+            :to="item.path"
+            class="mobile-nav-link"
+            :class="{ active: $route.path === item.path }"
+            @click="menuOpen = false"
+          >
+            {{ item.name }}
+          </router-link>
+          <router-link to="/download" class="mobile-download-btn" @click="menuOpen = false">
+            下载APP
+          </router-link>
+        </div>
       </div>
     </transition>
   </Teleport>
@@ -235,6 +171,28 @@ watch(
   width: clamp(120px, 15vw, 200px);
   height: auto;
 }
+
+.download-btn {
+  background-color: #dc2626;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+}
+
+.download-btn:hover {
+  background-color: #b91c1c;
+}
+
+.download-btn:active {
+  transform: scale(0.95);
+}
 </style>
 
 <!-- 移动端菜单样式需要非 scoped，因为使用了 Teleport -->
@@ -245,91 +203,59 @@ watch(
   top: clamp(3.5rem, 8vw, 6rem);
   left: 0;
   right: 0;
-  bottom: 0;
   background: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   z-index: 9999;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
-.mobile-nav {
+.mobile-menu-content {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 1rem;
-}
-
-.mobile-nav-list {
-  flex: 1;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  align-items: center;
+  padding: 24px 16px;
+  gap: 16px;
 }
 
 .mobile-nav-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 16px;
   color: #333;
-  background: #f8f8f8;
-  border-radius: 0.75rem;
   text-decoration: none;
-  transition: all 0.3s;
+  padding: 8px 16px;
+  transition: color 0.3s;
 }
 
-.mobile-nav-link:hover,
-.mobile-nav-link:active {
-  background: #f0f0f0;
+.mobile-nav-link:hover {
+  color: #e85a5a;
 }
 
 .mobile-nav-link.active {
-  background: linear-gradient(135deg, #e85a5a 0%, #d14545 100%);
-  color: white;
-}
-
-.mobile-nav-link.active .nav-arrow {
-  color: white;
-}
-
-.nav-arrow {
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #ccc;
-  transition: transform 0.3s;
-}
-
-.mobile-nav-link:hover .nav-arrow {
-  transform: translateX(4px);
-}
-
-.mobile-nav-footer {
-  padding: 1rem 0;
-  border-top: 1px solid #eee;
-  margin-top: auto;
+  color: #e85a5a;
 }
 
 .mobile-download-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #e85a5a 0%, #d14545 100%);
+  display: inline-block;
+  margin-top: 8px;
+  background: #dc2626;
   color: white;
+  padding: 10px 32px;
+  border-radius: 9999px;
   border: none;
-  border-radius: 0.75rem;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s;
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+}
+
+.mobile-download-btn:hover {
+  background: #b91c1c;
 }
 
 .mobile-download-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 /* 菜单滑入动画 */
@@ -340,7 +266,15 @@ watch(
 
 .menu-slide-enter-from,
 .menu-slide-leave-to {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   opacity: 0;
-  transform: translateY(-10px);
+}
+
+.menu-slide-enter-to,
+.menu-slide-leave-from {
+  max-height: 400px;
+  opacity: 1;
 }
 </style>
