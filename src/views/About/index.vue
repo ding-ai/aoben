@@ -27,12 +27,12 @@
 
         <!-- 数据统计 - 红色背景矩形 -->
         <div class="bg-red-500 rounded-lg py-8 px-6">
-          <div class="grid-responsive-4">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div v-for="stat in stats" :key="stat.label" class="text-center px-4 py-2">
-              <div class="text-stat font-bold text-white mb-2">
+              <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
                 {{ stat.number }}
               </div>
-              <div class="text-small text-white">{{ stat.label }}</div>
+              <div class="text-xs md:text-sm text-white">{{ stat.label }}</div>
             </div>
           </div>
         </div>
@@ -50,43 +50,45 @@
 
         <!-- 使命和愿景 - 左右两栏 -->
         <div class="mb-8">
-          <div class="grid-responsive-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- 企业使命 -->
-            <div class="bg-white p-8 rounded-lg shadow-sm">
-              <h3 class="text-body-lg font-bold text-gray-800 mb-4 text-center">企业使命</h3>
-              <p class="text-gray-500 text-body text-center">引领新康美 创造新生活</p>
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
+              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center">企业使命</h3>
+              <p class="text-gray-500 text-sm md:text-base text-center">引领新康美 创造新生活</p>
             </div>
             <!-- 企业愿景 -->
-            <div class="bg-white p-8 rounded-lg shadow-sm">
-              <h3 class="text-body-lg font-bold text-gray-800 mb-4 text-center">企业愿景</h3>
-              <p class="text-gray-500 text-body text-center">让美丽更自由</p>
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
+              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center">企业愿景</h3>
+              <p class="text-gray-500 text-sm md:text-base text-center">让美丽更自由</p>
             </div>
           </div>
         </div>
 
         <!-- 企业价值观 - 底部横跨 -->
         <div>
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <h3 class="text-body-lg font-bold text-gray-800 mb-6 text-center">企业价值观</h3>
-            <div class="text-body text-gray-600 space-y-2">
-              <p class="flex">
-                <span class="font-medium mr-2">诚信经营：</span>
+          <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
+            <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-4 md:mb-6 text-center">
+              企业价值观
+            </h3>
+            <div class="text-sm md:text-base text-gray-600 space-y-3">
+              <p class="flex flex-col md:flex-row md:items-center">
+                <span class="font-medium mb-1 md:mb-0 md:mr-2 md:w-24">诚信经营：</span>
                 <span>正直诚信，友善透明，守正经营</span>
               </p>
-              <p class="flex">
-                <span class="font-medium mr-2">第一原则：</span>
+              <p class="flex flex-col md:flex-row md:items-center">
+                <span class="font-medium mb-1 md:mb-0 md:mr-2 md:w-24">第一原则：</span>
                 <span>回归本质，要事第一，高效推进</span>
               </p>
-              <p class="flex">
-                <span class="font-medium mr-2">多走一步：</span>
+              <p class="flex flex-col md:flex-row md:items-center">
+                <span class="font-medium mb-1 md:mb-0 md:mr-2 md:w-24">多走一步：</span>
                 <span>环环相扣，前后接力，传递价值</span>
               </p>
-              <p class="flex">
-                <span class="font-medium mr-2">科技驱动：</span>
+              <p class="flex flex-col md:flex-row md:items-center">
+                <span class="font-medium mb-1 md:mb-0 md:mr-2 md:w-24">科技驱动：</span>
                 <span>创新融合，与时俱进，智造未来</span>
               </p>
-              <p class="flex">
-                <span class="font-medium mr-2">开放共赢：</span>
+              <p class="flex flex-col md:flex-row md:items-center">
+                <span class="font-medium mb-1 md:mb-0 md:mr-2 md:w-24">开放共赢：</span>
                 <span>群策群力，资源共享，互助成长</span>
               </p>
             </div>
@@ -99,18 +101,15 @@
     <section class="section-padding bg-white">
       <div class="container-main">
         <!-- 标题区域 -->
-        <div class="text-center mb-16">
+        <div class="text-center mb-8 md:mb-16">
           <h2 class="text-section-title font-bold text-gray-800 mb-4">荣誉资质</h2>
-          <p class="text-stat text-red-500 font-bold">100+</p>
+          <p class="text-2xl md:text-3xl lg:text-4xl text-red-500 font-bold">100+</p>
         </div>
 
         <!-- 资质证书图片 -->
         <div class="w-full">
-          <img
-            src="../../assets/images/关于我们_slices/Frame 1000011522@2x.png"
-            alt="荣誉资质"
-            class="img-responsive rounded-lg shadow-lg"
-          />
+          <img src="../../assets/images/关于我们_slices/Frame 1000011522@2x.png" alt="荣誉资质"
+            class="w-full h-auto max-w-full object-cover rounded-lg shadow-lg" />
         </div>
       </div>
     </section>
@@ -127,3 +126,35 @@ const stats = [
   { number: '500+', label: '瑜伽教练（人）' },
 ]
 </script>
+
+<style scoped>
+/* 响应式适配样式，与首页保持一致 */
+.text-section-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.text-small {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  line-height: 1.6;
+}
+
+.text-body {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .text-center {
+    text-align: center;
+  }
+
+  .mb-12 {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .mb-16 {
+    margin-bottom: clamp(2rem, 4vw, 4rem);
+  }
+}
+</style>

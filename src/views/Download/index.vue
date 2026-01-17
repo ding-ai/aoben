@@ -1,8 +1,10 @@
 <template>
   <div class="download-page">
     <div class="download-container">
-      <h1 class="download-title">下载奥本APP</h1>
-      <p class="download-subtitle">扫描二维码，开启健康美丽之旅</p>
+      <h1 class="download-title animate-fade-in-up">下载奥本APP</h1>
+      <p class="download-subtitle animate-fade-in-up" style="animation-delay: 0.2s">
+        扫描二维码，开启健康美丽之旅
+      </p>
 
       <div class="qrcode-grid">
         <!-- Android -->
@@ -75,6 +77,7 @@
 }
 
 .download-subtitle {
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
   font-size: 18px;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 64px;

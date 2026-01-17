@@ -3,7 +3,7 @@
     <div class="banner" style="font-family: MiSans">
       <div class="container-main banner-container">
         <h1 class="banner-title animate-fade-in-up banner-content">联系我们</h1>
-        <p class="banner-subtitle animate-fade-in-up banner-content">
+        <p class="banner-subtitle animate-fade-in-up banner-content" style="animation-delay: 0.2s">
           加盟入驻让前沿理念与技术支持成为您的竞争壁垒
         </p>
         <div class="contact-cards">
