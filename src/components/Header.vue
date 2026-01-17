@@ -62,8 +62,43 @@
 
   <!-- 移动端菜单 -->
   <Teleport to="body">
+    <!-- 遮罩层 - 点击关闭菜单 -->
+    <transition name="overlay-fade">
+      <div v-if="menuOpen" class="mobile-menu-overlay lg:hidden" @click="menuOpen = false"></div>
+    </transition>
+
+    <!-- 菜单内容 -->
     <transition name="menu-slide">
       <div v-if="menuOpen" class="mobile-menu lg:hidden">
+        <!-- 菜单标题头部 -->
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-title">
+            <img
+              src="../assets/images/首页_slices/加粗细@2x.png"
+              alt="AOBEN奥本"
+              class="mobile-logo"
+            />
+          </div>
+          <!-- 关闭按钮 -->
+          <button class="mobile-menu-close" @click="menuOpen = false" aria-label="关闭菜单">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 菜单导航项 -->
         <div class="mobile-menu-content">
           <router-link
             v-for="item in navItems"
@@ -197,10 +232,38 @@ watch(
 
 <!-- 移动端菜单样式需要非 scoped，因为使用了 Teleport -->
 <style>
+/* ==================== 移动端遮罩层 ==================== */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  backdrop-filter: blur(2px);
+}
+
+/* 遮罩层淡入淡出动画 */
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.overlay-fade-enter-from,
+.overlay-fade-leave-to {
+  opacity: 0;
+}
+
+.overlay-fade-enter-to,
+.overlay-fade-leave-from {
+  opacity: 1;
+}
+
 /* ==================== 移动端菜单 ==================== */
 .mobile-menu {
   position: fixed;
-  top: clamp(3.5rem, 8vw, 6rem);
+  top: 0;
   left: 0;
   right: 0;
   background: white;
@@ -209,20 +272,74 @@ watch(
   overflow: hidden;
 }
 
+/* 菜单标题头部 */
+.mobile-menu-header {
+  position: relative;
+  background: #000000;
+  padding: 16px 24px;
+  border-bottom: 1px solid #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.mobile-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  transform: scale(0.5);
+}
+
+/* 关闭按钮 */
+.mobile-menu-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 50%;
+}
+
+.mobile-menu-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.mobile-menu-close:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
 .mobile-menu-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 16px;
-  gap: 16px;
+  padding: 20px 16px;
+  gap: 12px;
 }
 
 .mobile-nav-link {
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 10px 16px;
   transition: color 0.3s;
+  font-weight: 500;
 }
 
 .mobile-nav-link:hover {

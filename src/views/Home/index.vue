@@ -9,18 +9,20 @@
         <!-- 左侧文字内容 -->
         <div class="profile-content">
           <h2 class="profile-title">集团简介</h2>
-          <p class="profile-subtitle">GROUP PROFILE</p>
+          <img
+            src="../../assets/images/首页_slices/GROUP PROFILE.png"
+            alt="GROUP PROFILE"
+            class="profile-subtitle-img"
+          />
 
           <div class="profile-text">
             <p>
-              奥本集团是一家专注于瑜伽、养生、医美领域的健康科技公司，融合科技医美、
-              美容养生、运动美学三位一体的理念，公司在行业内首创"奥本新康美"的商业模式。
+              奥本集团是一家专注于瑜伽、养生、医美领域的健康科技公司，融合科技医美、美
+              容养生、运动美学三位一体的理念，公司在行业内首创"奥本新康美"的商业模式。
             </p>
             <p>
-              目前奥本集团拥有："奥本瑜伽、奥本美肤SPA、奥本科技医美、奥本商学院、奥本
-              UP-JOY服饰、奥本咖啡中国茶、AOBEN护肤品、DR.AOBEN医学、奥本先康达"等
-              自营品牌矩阵。集团现有直营门店30余家，均座落在城市地标商圈，规划三年内全
-              布局300家城市直营旗舰店。
+              奥本集团已构建“瑜伽、医美、健康、教育、零售”的多元品牌矩阵，拥有30余家城
+              市地标直营店，并计划三年内扩张至300家。
             </p>
           </div>
 
@@ -37,22 +39,24 @@
           </button>
         </div>
 
-        <!-- 中间建筑图片 -->
-        <div class="profile-image">
-          <img src="../../assets/images/首页_slices/奥本楼 3.png" alt="奥本大楼" />
-        </div>
-
         <!-- 右侧数据统计 -->
-        <div class="profile-stats">
+        <div class="profile-stats" ref="statsRef">
           <div class="stat-item" v-for="stat in profileStats" :key="stat.label">
-            <div class="stat-number">{{ stat.number }}</div>
+            <div class="stat-number">{{ stat.animatedNumber }}</div>
             <div class="stat-label">{{ stat.label }}</div>
           </div>
         </div>
-      </div>
 
-      <!-- 右上角红色装饰 -->
-      <div class="red-decoration"></div>
+        <!-- 右上角红色背景装饰图 - 最底层 z-index: 1 -->
+        <div class="red-decoration-bg">
+          <img src="../../assets/images/首页_slices/Rectangle 346241192.png" alt="" />
+        </div>
+
+        <!-- 中间建筑图片 - 上层 z-index: 5 -->
+        <div class="profile-image">
+          <img src="../../assets/images/首页_slices/奥本楼 3.png" alt="奥本大楼" />
+        </div>
+      </div>
     </section>
 
     <!-- 集团资讯 -->
@@ -116,7 +120,7 @@
               <h3 class="news-card-title" :class="{ active: idx === 0 }">{{ item.title }}</h3>
               <p class="news-card-desc">{{ item.desc }}</p>
               <div class="news-card-image">
-                <img :src="item.image" :alt="item.title" />
+                <img :src="item.image" :alt="item.title" loading="lazy" />
               </div>
               <div class="news-card-arrow" :class="{ active: idx === 0 }">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,7 +141,7 @@
     <!-- 服务分类 -->
     <section class="services-section">
       <div v-for="(cat, idx) in serviceCategories" :key="idx" class="service-item">
-        <img :src="cat.image" :alt="cat.name" class="service-bg" />
+        <img :src="cat.image" :alt="cat.name" class="service-bg" loading="lazy" />
         <div class="service-overlay"></div>
         <div class="service-content">
           <div class="service-tag">{{ cat.icon }}</div>
@@ -155,15 +159,78 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import BannerSection from './components/BannerSection.vue'
 
-const profileStats = [
-  { number: '2016', label: '始创于（年）' },
-  { number: '30+', label: '直营店（家）' },
-  { number: '10万+', label: '客户（人）' },
-  { number: '500+', label: '瑜伽教练（人）' },
-]
+const statsRef = ref(null)
+const profileStats = ref([
+  { number: '2016', animatedNumber: '0', label: '始创于（年）', target: 2016, suffix: '' },
+  { number: '30+', animatedNumber: '0', label: '直营店（家）', target: 30, suffix: '+' },
+  { number: '10万+', animatedNumber: '0', label: '客户（人）', target: 10, suffix: '万+' },
+  { number: '500+', animatedNumber: '0', label: '瑜伽教练（人）', target: 500, suffix: '+' },
+])
+
+let observer = null
+let animationFrameId = null
+
+// 优化的数字动画函数
+const animateNumber = (stat, duration = 2000) => {
+  const start = 0
+  const end = stat.target
+  const startTime = performance.now()
+
+  const updateNumber = (currentTime) => {
+    const elapsed = currentTime - startTime
+    const progress = Math.min(elapsed / duration, 1)
+
+    // 使用缓动函数 (easeOutQuart)
+    const easeProgress = 1 - Math.pow(1 - progress, 4)
+    const current = Math.floor(start + (end - start) * easeProgress)
+
+    stat.animatedNumber = current + stat.suffix
+
+    if (progress < 1) {
+      animationFrameId = requestAnimationFrame(updateNumber)
+    } else {
+      stat.animatedNumber = end + stat.suffix
+    }
+  }
+
+  requestAnimationFrame(updateNumber)
+}
+
+// 使用 Intersection Observer 检测元素是否进入视口
+onMounted(() => {
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // 元素进入视口，所有数字同时开始动画
+          profileStats.value.forEach((stat) => {
+            animateNumber(stat)
+          })
+          observer.unobserve(entry.target) // 动画只执行一次
+        }
+      })
+    },
+    { threshold: 0.3 }, // 当30%的元素可见时触发
+  )
+
+  if (statsRef.value) {
+    observer.observe(statsRef.value)
+  }
+})
+
+// 清理资源
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId)
+  }
+})
 
 const serviceCategories = [
   {
@@ -247,81 +314,226 @@ const nextNews = () => {
 .group-profile {
   position: relative;
   width: 100%;
-  /* 手机最小500px，中间按42vw缩放，最大800px */
-  min-height: clamp(500px, 42vw, 800px);
+  min-height: 700px;
   background-color: #fafafa;
-  /* background-image: url('../../assets/images/首页_slices/Frame 1000011613.png'); */
+  background-image: url('../../assets/images/首页_slices/Frame 1000011613.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  .group-profile {
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .group-profile {
+    min-height: 550px;
+  }
+}
+
+@media (max-width: 640px) {
+  .group-profile {
+    min-height: 500px;
+  }
+}
+
 .profile-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(4rem, 10vw, 7.5rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 4vw, 2.5rem);
+  padding: 7.5rem 3rem 5rem;
   position: relative;
-  z-index: 1;
+  height: 100%;
+  min-height: 700px;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .profile-container {
-    grid-template-columns: 1fr 1.2fr auto;
-    align-items: center;
+    padding: 5rem 2rem 4rem;
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 4rem 1.5rem 3rem;
+    min-height: 550px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-container {
+    padding: 3rem 1rem 2.5rem;
+    min-height: 500px;
   }
 }
 
 /* 左侧内容 */
 .profile-content {
-  max-width: 420px;
+  position: relative;
+  z-index: 10;
+  max-width: 540px;
+}
+
+@media (max-width: 1024px) {
+  .profile-content {
+    max-width: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .profile-content {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-content {
+    max-width: 250px;
+  }
+}
+@media (max-width: 440px) {
+  .profile-content {
+    max-width: 200px;
+  }
 }
 
 .profile-title {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: 2.5rem;
   font-weight: bold;
   color: #333;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.1em;
+  /* margin-bottom: 0.5rem; */
+  /* letter-spacing: 0.1em; */
 }
 
-.profile-subtitle {
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-  color: #999;
-  letter-spacing: 0.2em;
-  margin-bottom: clamp(1.5rem, 3vw, 2rem);
-  font-family: serif;
-  font-style: italic;
+@media (max-width: 1024px) {
+  .profile-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-title {
+    font-size: 1rem;
+  }
+}
+
+.profile-subtitle-img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .profile-subtitle-img {
+    max-width: 180px;
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-subtitle-img {
+    max-width: 160px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-subtitle-img {
+    max-width: 140px;
+    margin-bottom: 1.25rem;
+  }
 }
 
 .profile-text {
-  color: #666;
-  font-size: clamp(0.8rem, 1.2vw, 0.875rem);
-  line-height: 2;
-  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  color: #a39b9b;
+  font-family: 'MiSans';
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .profile-text {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-text {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    margin-bottom: 3.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-text {
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    margin-bottom: 3.25rem;
+  }
 }
 
 .profile-text p {
   margin-bottom: 1rem;
 }
 
+@media (max-width: 640px) {
+  .profile-text p {
+    margin-bottom: 0.75rem;
+  }
+}
+
 .profile-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: clamp(0.625rem, 1.5vw, 0.75rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  padding: 0.75rem 1.75rem;
   background: linear-gradient(135deg, #e85a5a 0%, #d14545 100%);
   color: white;
   border: none;
   border-radius: 1.5rem;
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(232, 90, 90, 0.3);
+  will-change: transform;
+}
+
+@media (max-width: 1024px) {
+  .profile-btn {
+    padding: 0.6875rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-btn {
+    padding: 0.5625rem 1.125rem;
+    font-size: 0.6875rem;
+    gap: 0.375rem;
+  }
 }
 
 .profile-btn:hover {
@@ -329,71 +541,239 @@ const nextNews = () => {
   box-shadow: 0 6px 20px rgba(232, 90, 90, 0.4);
 }
 
-/* 中间图片 */
+@media (max-width: 640px) {
+  .profile-btn:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* 中间建筑图片 - 使用绝对定位，z-index: 5 在上层 */
 .profile-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+  width: 950px;
+  height: auto;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (max-width: 1280px) {
+  .profile-image {
+    right: 50px;
+    width: 750px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-image {
+    right: 50px;
+    width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-image {
+    right: 50px;
+    bottom: 0;
+    width: 500px;
+    /* opacity: 0.8; */
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-image {
+    right: 50%;
+    /* bottom: 50px; */
+    transform: translateX(50%);
+    width: 520px;
+    /* opacity: 0.5; */
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-image {
+    width: 500px;
+    bottom: 0px;
+    transform: translate(220px, 0px);
+    /* opacity: 0.4; */
+  }
 }
 
 .profile-image img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  max-height: clamp(300px, 50vw, 600px);
   object-fit: contain;
 }
 
-/* 右侧数据 */
-.profile-stats {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: clamp(1rem, 2vw, 1.25rem);
-  justify-content: center;
+/* 右上角红色背景装饰图 - z-index: 1 在底层 */
+.red-decoration-bg {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  width: 350px;
+  height: 500px;
+  z-index: 1;
+  pointer-events: none;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1280px) {
+  .red-decoration-bg {
+    width: 300px;
+    top: 80px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .red-decoration-bg {
+    width: 260px;
+    top: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .red-decoration-bg {
+    width: 220px;
+    top: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+  .red-decoration-bg {
+    width: 200px;
+    top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .red-decoration-bg {
+    width: 200px;
+    top: 40px;
+    transform: translate(30px, 10px);
+  }
+}
+
+.red-decoration-bg img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 右侧数据统计 - 绝对定位在红色区域内，z-index: 10 在最上层 */
+.profile-stats {
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  z-index: 10;
+}
+
+@media (max-width: 1280px) {
   .profile-stats {
-    flex-direction: column;
-    gap: clamp(1.5rem, 3vw, 2rem);
-    justify-content: flex-start;
+    top: 5rem;
+    right: 2rem;
+    gap: 2.25rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-stats {
+    top: 4rem;
+    right: 2rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-stats {
+    top: 3rem;
+    right: 2rem;
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-stats {
+    top: 3rem;
+    right: 2rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-stats {
+    top: 4rem;
+    right: 1.5rem;
+    gap: 1.25rem;
   }
 }
 
 .stat-item {
-  text-align: center;
-  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
-}
-
-@media (min-width: 1024px) {
-  .stat-item {
-    text-align: left;
-  }
+  text-align: right;
+  color: white;
 }
 
 .stat-number {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: bold;
-  color: #e85a5a;
+  font-size: 2.5rem;
+  font-weight: 900;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 1024px) {
+  .stat-number {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-number {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-number {
+    font-size: 1.5rem;
+  }
 }
 
 .stat-label {
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-  color: #999;
+  font-size: 0.75rem;
+  opacity: 0.9;
+  font-weight: 300;
 }
 
-/* 右上角红色装饰 */
-.red-decoration {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: clamp(120px, 20vw, 300px);
-  height: clamp(180px, 30vw, 450px);
-  background: linear-gradient(180deg, #e85a5a 0%, #ff8a80 100%);
-  border-radius: 0 0 0 100%;
-  z-index: 0;
+@media (max-width: 1024px) {
+  .stat-label {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-label {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-label {
+    font-size: 0.5625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-label {
+    font-size: 0.5rem;
+  }
 }
 
 /* ==================== Section 通用样式 ==================== */
@@ -622,8 +1002,10 @@ const nextNews = () => {
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%);
-  transition: all 0.5s;
-  transform: scale(1);
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+  will-change: transform, filter;
 }
 
 .news-card:hover .news-card-image img {
@@ -706,7 +1088,8 @@ const nextNews = () => {
   cursor: pointer;
   overflow: hidden;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  transition: flex 0.7s ease-in-out;
+  transition: flex 0.5s ease-in-out;
+  will-change: flex;
 }
 
 .service-item:last-child {
@@ -723,7 +1106,8 @@ const nextNews = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s ease;
+  transition: transform 0.6s ease;
+  will-change: transform;
 }
 
 .service-item:hover .service-bg {
@@ -734,7 +1118,7 @@ const nextNews = () => {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  transition: background-color 0.5s ease;
+  transition: background-color 0.3s ease;
 }
 
 .service-item:hover .service-overlay {
@@ -769,7 +1153,10 @@ const nextNews = () => {
   margin-bottom: 24px;
   opacity: 0;
   transform: translateY(16px);
-  transition: all 0.5s ease 0.1s;
+  transition:
+    opacity 0.3s ease 0.1s,
+    transform 0.3s ease 0.1s;
+  will-change: opacity, transform;
 }
 
 .service-item:hover .service-tag {
@@ -788,7 +1175,8 @@ const nextNews = () => {
   font-weight: bold;
   letter-spacing: 0.15em;
   white-space: nowrap;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .service-item:hover .service-title {
@@ -800,7 +1188,8 @@ const nextNews = () => {
   height: 2px;
   background-color: #ff3b30;
   margin-top: 16px;
-  transition: width 0.5s ease 0.2s;
+  transition: width 0.3s ease 0.15s;
+  will-change: width;
 }
 
 .service-item:hover .service-line {
@@ -810,7 +1199,7 @@ const nextNews = () => {
 .service-btn-wrap {
   margin-top: 24px;
   opacity: 0;
-  transition: opacity 0.5s ease 0.3s;
+  transition: opacity 0.3s ease 0.2s;
 }
 
 .service-item:hover .service-btn-wrap {
