@@ -1,5 +1,6 @@
 <template>
   <div class="w-full">
+    <ScrollIndicator />
     <!-- Banner -->
     <BannerSection />
 
@@ -190,6 +191,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import BannerSection from './components/BannerSection.vue'
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
 
 const statsRef = ref(null)
 const profileStats = ref([

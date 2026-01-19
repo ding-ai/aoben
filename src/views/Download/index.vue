@@ -1,5 +1,6 @@
 <template>
   <div class="download-page">
+    <ScrollIndicator />
     <div class="download-container">
       <h1 class="download-title animate-fade-in-up">下载奥本APP</h1>
       <p class="download-subtitle animate-fade-in-up" style="animation-delay: 0.2s">
@@ -51,7 +52,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
+</script>
 
 <style scoped>
 .download-page {

@@ -1,5 +1,6 @@
 <template>
   <div class="w-full">
+    <ScrollIndicator />
     <!-- 页面头部 -->
     <Banner></Banner>
 
@@ -98,6 +99,7 @@
 
 <script setup>
 import Banner from './components/Banner.vue'
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
 
 const stats = [
   { label: '始创于（年）', value: '2016' },

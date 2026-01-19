@@ -1,4 +1,5 @@
 <template>
+  <ScrollIndicator />
   <header>
     <div class="banner">
       <div class="container-main banner-content">
@@ -145,6 +146,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
 
 // 特色功能数据
 const features = [

@@ -27,14 +27,6 @@
     </div>
 
     <!-- 滚动提示 -->
-    <div
-      class="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-3 text-white/60"
-    >
-      <span class="text-xs tracking-widest">SCROLL</span>
-      <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
-        <div class="w-1.5 h-3 bg-white/50 rounded-full animate-bounce"></div>
-      </div>
-    </div>
   </section>
 </template>
 

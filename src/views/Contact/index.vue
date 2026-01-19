@@ -1,4 +1,5 @@
 <template>
+  <ScrollIndicator />
   <header>
     <div class="banner">
       <div class="container-main banner-container">
@@ -76,7 +77,9 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
+</script>
 
 <style scoped>
 .banner {

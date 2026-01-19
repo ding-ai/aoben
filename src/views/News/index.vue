@@ -1,5 +1,6 @@
 <template>
   <div class="news-page">
+    <ScrollIndicator />
     <!-- Banner -->
     <header class="banner">
       <div class="container-main banner-content">
@@ -68,6 +69,8 @@
 </template>
 
 <script setup>
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
+
 const latestNews = [
   {
     id: 1,
