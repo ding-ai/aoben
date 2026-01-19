@@ -133,14 +133,12 @@ const pastNews = [
 }
 
 .banner-title {
-  font-family: 'MiSans';
   font-size: clamp(2rem, 6vw, 3.75rem);
   font-weight: 500;
   line-height: 1.2;
 }
 
 .banner-subtitle {
-  font-family: 'MiSans';
   font-size: clamp(0.875rem, 2vw, 1.125rem);
   font-weight: 300;
   margin-top: clamp(0.5rem, 1vw, 0.75rem);
@@ -150,7 +148,6 @@ const pastNews = [
 
 /* ==================== Section 标题 ==================== */
 .section-title-left {
-  font-family: 'MiSans';
   font-size: clamp(1.5rem, 4vw, 2.375rem);
   font-weight: 700;
   color: #333;
@@ -203,7 +200,6 @@ const pastNews = [
 }
 
 .news-card-title {
-  font-family: 'MiSans';
   font-size: clamp(1rem, 2vw, 1.375rem);
   font-weight: 700;
   line-height: 1.4;
@@ -291,7 +287,6 @@ const pastNews = [
 }
 
 .past-news-title {
-  font-family: 'MiSans';
   font-size: clamp(1rem, 2vw, 1.375rem);
   font-weight: 700;
   color: #333;
@@ -300,7 +295,6 @@ const pastNews = [
 }
 
 .past-news-desc {
-  font-family: 'MiSans';
   font-size: clamp(0.8rem, 1.2vw, 0.9rem);
   color: #666;
   line-height: 1.8;

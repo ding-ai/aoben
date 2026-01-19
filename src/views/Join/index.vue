@@ -301,14 +301,12 @@ const nextPage = () => {
 }
 
 .banner-title {
-  font-family: 'MiSans';
   font-size: clamp(2rem, 6vw, 3.75rem);
   font-weight: 500;
   line-height: 1.2;
 }
 
 .banner-subtitle {
-  font-family: 'MiSans';
   font-size: clamp(0.875rem, 2vw, 1.125rem);
   font-weight: 300;
   margin-top: clamp(0.5rem, 1vw, 0.75rem);
@@ -327,7 +325,6 @@ const nextPage = () => {
 
 .section-title {
   text-align: center;
-  font-family: 'MiSans';
   font-size: clamp(1.5rem, 4vw, 2.375rem);
   font-weight: 700;
 }
@@ -346,7 +343,6 @@ const nextPage = () => {
 
 .brand-desc {
   margin-top: clamp(1.5rem, 4vw, 3rem);
-  font-family: 'MiSans';
   font-size: clamp(0.875rem, 1.5vw, 1.125rem);
   font-weight: 300;
   line-height: 1.6;
@@ -438,7 +434,6 @@ const nextPage = () => {
 }
 
 .history-title {
-  font-family: 'MiSans';
   font-size: clamp(1.5rem, 4vw, 2.375rem);
   font-weight: 700;
   color: #333;
@@ -748,7 +743,6 @@ const nextPage = () => {
 }
 
 .business-title {
-  font-family: 'MiSans';
   font-size: 38px;
   font-weight: 700;
   color: #333;
@@ -820,7 +814,6 @@ const nextPage = () => {
 }
 
 .business-content h3 {
-  font-family: 'MiSans';
   font-size: 18px;
   font-weight: 600;
   color: #333;
@@ -941,7 +934,6 @@ const nextPage = () => {
 }
 
 .core-title {
-  font-family: 'MiSans';
   font-size: clamp(1.5rem, 4vw, 2.375rem);
   font-weight: 700;
   color: #333;
@@ -959,7 +951,7 @@ const nextPage = () => {
 .core-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(0.5rem, 2vw, 1rem);
 }
 
 @media (min-width: 640px) {
@@ -977,7 +969,7 @@ const nextPage = () => {
 .core-card {
   background: #f8f8f8;
   border-radius: clamp(0.75rem, 1.5vw, 1rem);
-  padding: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.5rem, 2vw, 0.5rem);
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
@@ -1003,7 +995,6 @@ const nextPage = () => {
 }
 
 .core-card-title {
-  font-family: 'MiSans';
   font-size: clamp(0.8rem, 1.1vw, 0.95rem);
   font-weight: 600;
   color: #333;
@@ -1015,7 +1006,7 @@ const nextPage = () => {
   font-size: clamp(0.65rem, 0.85vw, 0.75rem);
   color: #999;
   line-height: 1.5;
-  text-align: center;
+  /* text-align: center; */
 }
 
 /* ==================== 动画 ==================== */

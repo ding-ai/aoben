@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="banner" style="font-family: MiSans">
+    <div class="banner">
       <div class="container-main banner-container">
         <h1 class="banner-title animate-fade-in-up banner-content">联系我们</h1>
         <p class="banner-subtitle animate-fade-in-up banner-content" style="animation-delay: 0.2s">
@@ -42,7 +42,7 @@
     </div>
   </header>
   <section>
-    <div class="banner1" style="font-family: MiSans">
+    <div class="banner1">
       <div class="container-main address-header">
         <p class="address-title">办公地址</p>
         <p class="address-subtitle">(苏州昆山总部)</p>
@@ -96,7 +96,6 @@
 
 .banner-title {
   color: black;
-  font-family: 'MiSans';
   font-size: clamp(2rem, 6vw, 3.75rem);
   font-weight: 500;
   line-height: 1.2;
@@ -104,7 +103,6 @@
 
 .banner-subtitle {
   color: #333333;
-  font-family: 'MiSans';
   font-size: clamp(0.875rem, 2vw, 1.125rem);
   font-weight: 300;
   margin-top: 20px;

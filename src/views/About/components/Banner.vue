@@ -11,7 +11,7 @@
       <div class="max-w-xl lg:max-w-2xl">
         <h1
           class="text-hero text-white font-bold leading-tight mb-6 sm:mb-8 animate-fade-in-up tracking-widest"
-          style="font-family: 'MiSans'; font-weight: 700"
+          style="font-weight: 700; margin-bottom: 1rem"
         >
           关于我们
         </h1>
@@ -19,7 +19,7 @@
         <!-- 副标题 -->
         <p
           class="text-subtitle text-white/60 leading-relaxed max-w-lg animate-fade-in-up tracking-wide"
-          style="animation-delay: 0.2s; font-family: 'MiSans'; font-weight: 300"
+          style="animation-delay: 0.2s; font-weight: 300"
         >
           了解集团最新消息, 以便于我们合作
         </p>

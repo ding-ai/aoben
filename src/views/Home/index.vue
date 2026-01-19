@@ -455,7 +455,6 @@ const nextNews = () => {
 
 .profile-text {
   color: #a39b9b;
-  font-family: 'MiSans';
   font-size: 0.875rem;
   line-height: 1.6;
   margin-bottom: 3rem;
