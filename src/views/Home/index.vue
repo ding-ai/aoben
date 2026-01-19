@@ -49,12 +49,22 @@
 
         <!-- 右上角红色背景装饰图 - 最底层 z-index: 1 -->
         <div class="red-decoration-bg">
-          <img src="../../assets/images/首页_slices/Rectangle 346241192.png" alt="" />
+          <img
+            src="https://cdn.aoben.yoga/membermini/web/20260119/Rectangle346241192.webp/low_quality?imageSlim"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <!-- 中间建筑图片 - 上层 z-index: 5 -->
         <div class="profile-image">
-          <img src="../../assets/images/首页_slices/奥本楼 3.png" alt="奥本大楼" />
+          <img
+            src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011614.webp/low_quality?imageSlim"
+            alt="奥本大楼"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -120,7 +130,7 @@
               <h3 class="news-card-title" :class="{ active: idx === 0 }">{{ item.title }}</h3>
               <p class="news-card-desc">{{ item.desc }}</p>
               <div class="news-card-image">
-                <img :src="item.image" :alt="item.title" loading="lazy" />
+                <img :src="item.image" :alt="item.title" loading="lazy" decoding="async" />
               </div>
               <div class="news-card-arrow" :class="{ active: idx === 0 }">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,18 +151,37 @@
     <!-- 服务分类 -->
     <section class="services-section">
       <div v-for="(cat, idx) in serviceCategories" :key="idx" class="service-item">
-        <img :src="cat.image" :alt="cat.name" class="service-bg" loading="lazy" />
-        <div class="service-overlay"></div>
-        <div class="service-content">
-          <div class="service-tag">{{ cat.icon }}</div>
-          <div class="service-title-wrap">
-            <h3 class="service-title">{{ cat.name }}</h3>
-            <div class="service-line"></div>
-          </div>
-          <div class="service-btn-wrap">
-            <span class="service-btn">VIEW MORE</span>
+        <!-- 背景图片 -->
+        <img :src="cat.image" :alt="cat.name" class="service-bg" loading="lazy" decoding="async" />
+
+        <!-- 基础遮罩 -->
+        <div class="service-base-overlay"></div>
+
+        <!-- 展开状态的描述卡片 -->
+        <div class="service-expanded-card">
+          <div class="service-expanded-content">
+            <!-- Logo 标签 -->
+            <div class="service-logo-tag">
+              <span :style="{ color: cat.textColor }">{{ cat.tag }}</span>
+            </div>
+            <h4 class="service-expanded-title">{{ cat.name }}</h4>
+            <!-- 描述 -->
+            <p class="service-expanded-desc">{{ cat.description }}</p>
           </div>
         </div>
+
+        <!-- 初始状态的底部栏 -->
+        <div class="service-initial-bar">
+          <!-- Logo 标签 -->
+          <div class="service-logo-tag-small">
+            <span :style="{ color: cat.textColor }">{{ cat.tag }}</span>
+          </div>
+          <!-- 名称 -->
+          <h3 class="service-initial-title">{{ cat.name }}</h3>
+        </div>
+
+        <!-- 底部红色强调线 -->
+        <div class="service-accent-line"></div>
       </div>
     </section>
   </div>
@@ -235,33 +264,48 @@ onUnmounted(() => {
 const serviceCategories = [
   {
     name: '奥本瑜伽普拉提',
-    icon: 'AOBÉN奥本',
+    tag: 'AOBÉN奥本',
+    textColor: '#E52E2A',
     image:
-      'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800',
+      'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011602.webp/low_quality?imageSlim',
+    description:
+      '奥本瑜伽普拉提致力于提供最专业的瑜伽教学与普拉提核心训练，环境优雅，设施齐全，为您打造身心合一的运动体验。',
   },
   {
     name: '奥本美肤SPA',
-    icon: 'AOBEN',
+    tag: 'AOBEN 奥本SPA',
+    textColor: '#2DAA9E',
     image:
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800',
+      'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011603.webp/low_quality?imageSlim',
+    description:
+      '奥本美肤SPA围绕面部年轻化、身体健康化以及形体标准化展开服务。我们融合高科仪器的精准之力与独创按摩手法的精妙之道，为每一位顾客量身定制专属的个性化服务。',
   },
   {
     name: '奥本科技医美',
-    icon: 'Dr.AOBEN',
+    tag: 'Dr.AOBEN 奥本医美',
+    textColor: '#00A2E8',
     image:
-      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800',
+      'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011604.webp/low_quality?imageSlim',
+    description:
+      '奥本科技医美融合前沿医学科技与美学理念，提供安全、专业、个性化的医美解决方案，让美丽与健康同行，助您焕发自信光彩。',
   },
   {
     name: '奥本学院',
-    icon: 'AOBEN',
+    tag: '奥本商学',
+    textColor: '#1A1A1A',
     image:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800',
+      'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011605.webp/low_quality?imageSlim',
+    description:
+      '奥本学院专注于健康产业人才培养与商业赋能，提供系统化培训课程与实战指导，助力学员实现职业成长与创业梦想。',
   },
   {
     name: '奥本先康达',
-    icon: 'AOBEN LIFE',
+    tag: 'AOBEN LIFE 奥本生命',
+    textColor: '#1A1A1A',
     image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
+      'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011606.webp/low_quality?imageSlim',
+    description:
+      '奥本先康达专注于生物科技研发与转化，探索生命科技，守护人类健康，让前沿科技造福更多家庭与社会。',
   },
 ]
 
@@ -316,7 +360,7 @@ const nextNews = () => {
   width: 100%;
   min-height: 700px;
   background-color: #fafafa;
-  background-image: url('../../assets/images/首页_slices/Frame 1000011613.png');
+  background-image: url('https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011562.webp/low_quality?imageSlim');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -549,9 +593,9 @@ const nextNews = () => {
 /* 中间建筑图片 - 使用绝对定位，z-index: 5 在上层 */
 .profile-image {
   position: absolute;
-  right: 100px;
+  right: 0px;
   bottom: 0;
-  width: 950px;
+  width: 1300px;
   height: auto;
   z-index: 5;
   pointer-events: none;
@@ -559,42 +603,42 @@ const nextNews = () => {
 
 @media (max-width: 1280px) {
   .profile-image {
-    right: 50px;
-    width: 750px;
+    right: 0px;
+    width: 1000px;
   }
 }
 
 @media (max-width: 1024px) {
   .profile-image {
-    right: 50px;
-    width: 700px;
+    right: 0px;
+    width: 900px;
   }
 }
 
 @media (max-width: 768px) {
   .profile-image {
-    right: 50px;
+    right: 0px;
     bottom: 0;
-    width: 500px;
+    width: 800px;
     /* opacity: 0.8; */
   }
 }
 
 @media (max-width: 640px) {
   .profile-image {
-    right: 50%;
+    right: 0%;
     /* bottom: 50px; */
-    transform: translateX(50%);
-    width: 520px;
+    /* transform: translateX(50%); */
+    width: 700px;
     /* opacity: 0.5; */
   }
 }
 
 @media (max-width: 480px) {
   .profile-image {
-    width: 500px;
+    width: 700px;
     bottom: 0px;
-    transform: translate(220px, 0px);
+    transform: translate(120px, 0px);
     /* opacity: 0.4; */
   }
 }
@@ -1075,10 +1119,11 @@ const nextNews = () => {
 .services-section {
   display: flex;
   flex-direction: row;
-  height: 600px;
+  height: 920px;
   width: 100%;
   overflow: hidden;
   background-color: black;
+  position: relative;
 }
 
 .service-item {
@@ -1086,8 +1131,8 @@ const nextNews = () => {
   flex: 1;
   cursor: pointer;
   overflow: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  transition: flex 0.5s ease-in-out;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  transition: flex 0.8s ease-in-out;
   will-change: flex;
 }
 
@@ -1096,141 +1141,229 @@ const nextNews = () => {
 }
 
 .service-item:hover {
-  flex: 2.5;
+  flex: 5;
 }
 
+/* 背景图片 */
 .service-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 1.2s ease;
   will-change: transform;
 }
 
 .service-item:hover .service-bg {
-  transform: scale(1.05);
+  transform: scale(1);
 }
 
-.service-overlay {
+/* 基础遮罩 */
+.service-base-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: background-color 0.3s ease;
-}
-
-.service-item:hover .service-overlay {
   background-color: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.7s ease;
+  z-index: 1;
 }
 
-.service-content {
-  position: relative;
-  z-index: 10;
-  height: 100%;
+.service-item:hover .service-base-overlay {
+  background-color: transparent;
+}
+
+/* 展开状态的描述卡片 */
+.service-expanded-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.service-expanded-content {
+  width: 100%;
+  max-width: 56rem;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.65) 100%);
+  backdrop-filter: blur(24px);
+  border-radius: 1.5rem;
+  padding: 2rem 2.5rem;
+  transform: translateY(3rem);
+  opacity: 0;
+  transition: all 0.4s ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 48px;
-  color: white;
   text-align: center;
-  padding-left: 16px;
-  padding-right: 16px;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.service-tag {
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(4px);
-  color: black;
-  padding: 6px 16px;
+.service-item:hover .service-expanded-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Logo 标签（展开状态） */
+.service-logo-tag {
+  background-color: white;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+}
+
+.service-logo-tag span {
   font-size: 10px;
-  font-weight: bold;
-  letter-spacing: 0.2em;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 24px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.3s ease 0.1s,
-    transform 0.3s ease 0.1s;
-  will-change: opacity, transform;
+  white-space: nowrap;
 }
 
-.service-item:hover .service-tag {
+/* 展开状态标题 */
+.service-expanded-title {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+/* 展开状态描述 */
+.service-expanded-desc {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  max-width: 42rem;
+  font-weight: 400;
+  text-align: justify;
+  text-justify: inter-character;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease 0.2s;
+}
+
+.service-item:hover .service-expanded-desc {
   opacity: 1;
   transform: translateY(0);
 }
 
-.service-title-wrap {
+/* 初始状态的底部栏 */
+.service-initial-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transition: all 0.7s ease;
+  z-index: 20;
 }
 
-.service-title {
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 0.15em;
-  white-space: nowrap;
-  transition: transform 0.3s ease;
-  will-change: transform;
-}
-
-.service-item:hover .service-title {
-  transform: scale(1.1);
-}
-
-.service-line {
-  width: 0;
-  height: 2px;
-  background-color: #ff3b30;
-  margin-top: 16px;
-  transition: width 0.3s ease 0.15s;
-  will-change: width;
-}
-
-.service-item:hover .service-line {
-  width: 48px;
-}
-
-.service-btn-wrap {
-  margin-top: 24px;
+.service-item:hover .service-initial-bar {
   opacity: 0;
-  transition: opacity 0.3s ease 0.2s;
+  transform: translateY(-3rem);
 }
 
-.service-item:hover .service-btn-wrap {
-  opacity: 1;
-}
-
-.service-btn {
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 8px 16px;
-  border-radius: 9999px;
-  transition: all 0.3s ease;
-}
-
-.service-btn:hover {
+/* Logo 标签（初始状态） */
+.service-logo-tag-small {
   background-color: white;
-  color: black;
+  padding: 0.375rem 1.25rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 平板端适配 */
+.service-logo-tag-small span {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* 初始状态标题 */
+.service-initial-title {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+}
+
+/* 底部红色强调线 */
+.service-accent-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff3b30;
+  transform: scaleX(0);
+  transition: transform 0.7s ease;
+  transform-origin: center;
+  z-index: 40;
+}
+
+.service-item:hover .service-accent-line {
+  transform: scaleX(1);
+}
+
+/* 平板端适配 (768px - 1024px) */
 @media (max-width: 1024px) {
   .services-section {
-    height: 500px;
+    height: 600px;
   }
 
-  .service-title {
-    font-size: 16px;
+  .service-expanded-content {
+    padding: 1.75rem 2rem;
+    border-radius: 1.25rem;
+    max-width: 48rem;
   }
 
-  .service-content {
-    padding-bottom: 36px;
+  .service-logo-tag {
+    padding: 0.4rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-logo-tag span {
+    font-size: 9px;
+  }
+
+  .service-expanded-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-expanded-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    max-width: 38rem;
+  }
+
+  .service-initial-bar {
+    /* margin-bottom: 30px; */
+    height: 120px;
+  }
+
+  .service-initial-title {
+    font-size: 0.9375rem;
   }
 }
 
@@ -1243,9 +1376,10 @@ const nextNews = () => {
 
   .service-item {
     flex: none;
-    height: 200px;
+    height: 280px;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: height 0.6s ease-in-out;
   }
 
   .service-item:last-child {
@@ -1254,30 +1388,130 @@ const nextNews = () => {
 
   .service-item:hover {
     flex: none;
-    height: 280px;
+    height: 520px;
   }
 
-  .service-content {
-    padding-bottom: 24px;
+  .service-bg {
+    transition: transform 1s ease;
   }
 
-  .service-title {
-    font-size: 16px;
+  .service-expanded-card {
+    padding-bottom: 2rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
-  .service-tag {
+  .service-expanded-content {
+    padding: 1.5rem 1.75rem;
+    border-radius: 1rem;
+    max-width: 100%;
+    transition: all 0.5s ease-out;
+  }
+
+  .service-logo-tag {
+    padding: 0.375rem 1rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .service-logo-tag span {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+
+  .service-expanded-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.875rem;
+    letter-spacing: 0.03em;
+  }
+
+  .service-expanded-desc {
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    max-width: 100%;
+    text-align: center;
+    transition: all 0.6s ease 0.25s;
+  }
+
+  .service-initial-bar {
+    height: 100px;
+    transition: all 0.6s ease;
+  }
+
+  .service-logo-tag-small {
+    padding: 0.25rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-logo-tag-small span {
     font-size: 9px;
-    padding: 4px 12px;
-    margin-bottom: 16px;
   }
 
-  .service-btn-wrap {
-    margin-top: 16px;
+  .service-initial-title {
+    font-size: 0.875rem;
   }
 
-  .service-btn {
-    font-size: 10px;
-    padding: 6px 12px;
+  .service-accent-line {
+    transition: transform 0.6s ease;
+  }
+}
+
+/* 小屏手机适配 */
+@media (max-width: 480px) {
+  .service-item {
+    height: 240px;
+    transition: height 0.65s ease-in-out;
+  }
+
+  .service-item:hover {
+    height: 460px;
+  }
+
+  .service-bg {
+    transition: transform 1.1s ease;
+  }
+
+  .service-expanded-card {
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .service-expanded-content {
+    padding: 1.25rem 1.5rem;
+    transition: all 0.55s ease-out;
+  }
+
+  .service-logo-tag {
+    padding: 0.3rem 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-logo-tag span {
+    font-size: 7px;
+  }
+
+  .service-expanded-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-expanded-desc {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    transition: all 0.65s ease 0.3s;
+  }
+
+  .service-initial-bar {
+    height: 90px;
+    transition: all 0.65s ease;
+  }
+
+  .service-initial-title {
+    font-size: 0.8125rem;
+  }
+
+  .service-accent-line {
+    transition: transform 0.65s ease;
   }
 }
 </style>

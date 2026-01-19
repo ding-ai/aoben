@@ -7,10 +7,12 @@
       <!-- Logo -->
       <router-link to="/" class="flex-shrink-0">
         <img
-          src="../assets/images/首页_slices/加粗细@2x.png"
+          src="https://cdn.aoben.yoga/membermini/web/20260119/%E5%8A%A0%E7%B2%97%E7%BB%86.webp/low_quality?imageSlim"
           alt="AOBEN奥本"
           class="logo-custom"
           :class="scrolled ? 'brightness-0' : ''"
+          loading="eager"
+          decoding="async"
         />
       </router-link>
 
@@ -145,13 +147,26 @@ const handleScroll = () => {
   scrolled.value = window.scrollY > 50
 }
 
+// 节流函数
+let scrollTimer = null
+const throttledScroll = () => {
+  if (scrollTimer) return
+  scrollTimer = setTimeout(() => {
+    handleScroll()
+    scrollTimer = null
+  }, 100)
+}
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', throttledScroll, { passive: true })
   // 初始化时检查一次
   handleScroll()
 })
 
-onUnmounted(() => window.removeEventListener('scroll', handleScroll))
+onUnmounted(() => {
+  window.removeEventListener('scroll', throttledScroll)
+  if (scrollTimer) clearTimeout(scrollTimer)
+})
 
 watch(
   () => route.path,

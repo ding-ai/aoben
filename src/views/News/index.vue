@@ -124,7 +124,8 @@ const pastNews = [
   display: flex;
   align-items: center;
   color: white;
-  background: url('../../assets/images/新闻资讯_slices/官网正品 1@2x.png') no-repeat center center;
+  background: url('https://cdn.aoben.yoga/membermini/web/20260119/696dc80d98e43.webp/low_quality?imageSlim')
+    no-repeat center center;
   background-size: cover;
 }
 

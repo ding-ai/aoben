@@ -1,12 +1,20 @@
 <template>
-  <section class="relative w-full min-h-screen-safe flex items-center overflow-hidden">
-    <!-- 背景图 -->
-    <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      :style="{ backgroundImage: `url(${bannerBg})` }"
-    ></div>
+  <section class="relative w-full min-h-screen-safe flex items-center overflow-hidden bg-warm-bg">
+    <!-- 骨架屏背景 - 在图片加载前显示 -->
+    <div v-if="!imageLoaded" class="absolute inset-0 skeleton-bg"></div>
 
-    <!-- 内容区域 -->
+    <!-- 背景图 - 优化加载 -->
+    <img
+      :src="bannerBg"
+      alt="奥本运动背景"
+      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+      :class="{ 'opacity-0': !imageLoaded }"
+      fetchpriority="high"
+      decoding="async"
+      @load="onImageLoad"
+    />
+
+    <!-- 内容区域 - 立即显示，不等待图片 -->
     <div class="container-main relative z-10 banner-content">
       <div class="max-w-xl lg:max-w-2xl">
         <h1
@@ -55,8 +63,11 @@
       </div>
     </div>
 
-    <!-- 装饰元素 -->
-    <div class="hidden xl:block absolute right-20 2xl:right-40 top-1/2 -translate-y-1/2">
+    <!-- 装饰元素 - 延迟渲染 -->
+    <div
+      v-if="imageLoaded"
+      class="hidden xl:block absolute right-20 2xl:right-40 top-1/2 -translate-y-1/2"
+    >
       <div
         class="w-80 h-80 2xl:w-96 2xl:h-96 rounded-full bg-gradient-to-br from-brand/20 to-orange-300/20 blur-3xl animate-float"
       ></div>
@@ -65,7 +76,16 @@
 </template>
 
 <script setup>
-import bannerBg from '@/assets/images/首页_slices/官网正品 1@2x.png'
+import { ref } from 'vue'
+
+const bannerBg =
+  'https://cdn.aoben.yoga/membermini/web/20260119/Group1000011132.webp/low_quality?imageSlim'
+
+const imageLoaded = ref(false)
+
+const onImageLoad = () => {
+  imageLoaded.value = true
+}
 </script>
 
 <style scoped>
@@ -76,5 +96,33 @@ import bannerBg from '@/assets/images/首页_slices/官网正品 1@2x.png'
 .min-h-screen-safe {
   /* 手机最小400px，中间按42vw缩放，最大800px */
   min-height: clamp(400px, 42vw, 800px);
+}
+
+/* 骨架屏背景 */
+.skeleton-bg {
+  background: linear-gradient(
+    135deg,
+    #f5f5f5 0%,
+    #e8e8e8 25%,
+    #f5f5f5 50%,
+    #e8e8e8 75%,
+    #f5f5f5 100%
+  );
+  background-size: 400% 400%;
+  animation: skeleton-loading 2s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.bg-warm-bg {
+  background-color: #faf9f7;
 }
 </style>

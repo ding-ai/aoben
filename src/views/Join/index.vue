@@ -110,7 +110,7 @@
       <div class="business-grid">
         <div class="business-item" v-for="item in businessList" :key="item.title">
           <div class="business-icon">
-            <img src="/src/assets/images/加盟奥本_slices/Frame 1000011172.png" :alt="item.title" />
+            <img :src="item.img" :alt="item.title" />
           </div>
           <div class="business-card">
             <div class="business-content">
@@ -133,11 +133,7 @@
       <div class="core-grid">
         <div class="core-card" v-for="item in coreList" :key="item.title">
           <div class="core-icon" style="text-align: center">
-            <img
-              src="/src/assets/images/加盟奥本_slices/Frame 1000011158.png"
-              :alt="item.title"
-              style="display: block; margin: 0 auto"
-            />
+            <img :src="item.img" :alt="item.title" style="display: block; margin: 0 auto" />
           </div>
           <h3 class="core-card-title" style="text-align: center">{{ item.title }}</h3>
           <p class="core-card-desc">{{ item.desc }}</p>
@@ -152,9 +148,18 @@ import { ref, computed } from 'vue'
 
 // 特色功能数据
 const features = [
-  { icon: '/src/assets/images/加盟奥本_slices/Frame 1000010504.png', text: '门店随心换' },
-  { icon: '/src/assets/images/加盟奥本_slices/Frame 1000010504.png', text: '课程自由选' },
-  { icon: '/src/assets/images/加盟奥本_slices/Frame 1000010504.png', text: '教练任你挑' },
+  {
+    icon: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000010504.webp/low_quality?imageSlim',
+    text: '门店随心选',
+  },
+  {
+    icon: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000010506.webp/low_quality?imageSlim',
+    text: '教练无忧换',
+  },
+  {
+    icon: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000010503.webp/low_quality?imageSlim',
+    text: '课程自由约',
+  },
 ]
 
 // 五大核心业务数据
@@ -162,22 +167,27 @@ const businessList = [
   {
     title: '运动塑形',
     desc: '引进瑜伽、泰拳等塑身力量训练，实现健身+普拉提科学塑形，打造更加优体。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011172.webp/low_quality?imageSlim',
   },
   {
     title: '美肤养护',
     desc: '长久驻颜，促进皮肤长期滋养，去斑、自主研发护肤产品，提供专业皮肤护理方案。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011172(1).webp/low_quality?imageSlim',
   },
   {
     title: '产后恢复',
     desc: '精准评估，大幅提升产后调养，去斑、私密+骨盆+私密，多维助力快速恢复状态。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011172(2).webp/low_quality?imageSlim',
   },
   {
     title: '熟龄管理',
     desc: '匀称调理，促进升级营养吸收，去斑、优先运动配套设备及产品，提供全套养方案。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011172(3).webp/low_quality?imageSlim',
   },
   {
     title: '健康调理',
     desc: '提升机能，增强身体适应力，实现内外协调，多技术融合物质提高力。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011172(4).webp/low_quality?imageSlim',
   },
 ]
 
@@ -186,22 +196,27 @@ const coreList = [
   {
     title: '模式优势',
     desc: '奥本打造了以共享瑜伽为核心的互联网平台，通过"场地引流、资源链接、多业态互补"三大主线，整合瑜伽五大品牌资源中科融合经营一体化，做生态赋能共生共赢。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011157.webp/low_quality?imageSlim',
   },
   {
     title: '产品优势',
     desc: '自主研发3大系列产品，满足多元专业级别，同时，打通供应链整合资源20+国内外精品，含瑜伽服、Foreo、全棉时代、乔妮雅等，全链路体验升级，视觉营销增量。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011158.webp/low_quality?imageSlim',
   },
   {
     title: '平台优势',
     desc: '自主技术平台拥有24项专利技术，实时数据跟踪、投后管、便捷化、线上小程序一键预约购物，线下智能化设备全流程配置。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011157(1).webp/low_quality?imageSlim',
   },
   {
     title: '营销优势',
     desc: '线上打造集美集粉丝、小红书、抖音等全媒体矩阵，精准投放定向推流、借力双微及各类新媒体，依托大众点评平台自发私域流量，开心同好社群员打造单店流量池口碑裂变。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011158(1).webp/low_quality?imageSlim',
   },
   {
     title: '服务优势',
     desc: '建立完善的SOP服务标准，确保多业态服务品质统一，提供1对1专属顾问服务，选址租赁到装修开业全流程陪跑，用心呵护会员打造单店流量池口碑裂变。',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011157(2).webp/low_quality?imageSlim',
   },
 ]
 
@@ -291,8 +306,8 @@ const nextPage = () => {
   display: flex;
   align-items: center;
   color: white;
-  background: url('../../assets/images/加盟奥本_slices/Rectangle 346240918@2x.png') no-repeat center
-    center;
+  background: url('https://cdn.aoben.yoga/membermini/web/20260119/Rectangle346240918.webp/low_quality?imageSlim')
+    no-repeat center center;
   background-size: cover;
 }
 
@@ -317,8 +332,8 @@ const nextPage = () => {
 /* ==================== 品牌理念区域 ==================== */
 .brand-section {
   min-height: clamp(450px, 42vw, 800px);
-  background: url('../../assets/images/加盟奥本_slices/Frame 1000011552@2x.png') no-repeat center
-    center;
+  background: url('https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011552.webp/low_quality?imageSlim')
+    no-repeat center center;
   background-size: cover;
   color: white;
 }

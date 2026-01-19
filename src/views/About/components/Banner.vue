@@ -39,7 +39,8 @@
 </template>
 
 <script setup>
-import bannerBg from '@/assets/images/关于我们_slices/官网正品 1.png'
+const bannerBg =
+  'https://cdn.aoben.yoga/membermini/web/20260119/%E5%AE%98%E7%BD%91%E6%AD%A3%E5%93%811.webp/low_quality?imageSlim'
 </script>
 
 <style scoped>

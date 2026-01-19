@@ -49,7 +49,19 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log'],
       },
     },
+    // 启用 gzip 压缩大小报告
+    reportCompressedSize: true,
+    // 优化依赖预构建
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
+  // 优化依赖预构建
+  optimizeDeps: {
+    include: ['vue', 'vue-router', 'pinia'],
+    exclude: [],
   },
 })

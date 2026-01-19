@@ -1,27 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="UTF-8">
-    
+    <meta charset="UTF-8" />
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/logo-icon.png">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- 预连接 DNS -->
-    <link rel="dns-prefetch" href="//cdn.example.com">
-    
+    <link rel="icon" type="image/png" href="/logo-icon.png" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <!-- 预连接 CDN -->
+    <link rel="preconnect" href="https://cdn.aoben.yoga" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.aoben.yoga" />
+
     <!-- SEO 优化 -->
-    <meta name="description" content="专业的官方宣传网站">
-    <meta name="keywords" content="官网,企业,产品,服务">
-    
-    <title>奥本运动</title>
-    
-    <!-- 预加载关键资源 -->
-    <link rel="preload" href="/src/style.css" as="style">
+    <meta name="description" content="奥本集团 - 专注瑜伽、养生、医美领域的健康科技公司" />
+    <meta name="keywords" content="奥本,瑜伽,医美,健康,养生,普拉提" />
+
+    <title>奥本运动 - 让健康成为生活方式</title>
+
+    <!-- 预加载首屏关键图片 -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://cdn.aoben.yoga/membermini/web/20260119/Group1000011132.webp/low_quality?imageSlim"
+      fetchpriority="high"
+    />
+
+    <!-- 内联关键CSS - 首屏渲染 -->
+    <style>
+      /* 基础重置和布局 */
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+        border-color: currentColor;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        tab-size: 4;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        font-size: clamp(14px, 2vw + 8px, 18px);
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        line-height: inherit;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        background-color: #fafafa;
+      }
+      #app {
+        min-height: 100vh;
+      }
+
+      /* 首屏加载动画 */
+      .app-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
+        gap: 1.5rem;
+      }
+      .app-loading-spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #e85a5a;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      .app-loading-text {
+        font-size: 14px;
+        color: #666;
+        letter-spacing: 0.1em;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 首屏容器样式 */
+      .container-main {
+        width: 100%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: clamp(1rem, 4vw, 3rem);
+        padding-right: clamp(1rem, 4vw, 3rem);
+      }
+
+      /* 防止FOUC */
+      .v-cloak {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- 首屏加载指示器 -->
+      <div class="app-loading">
+        <div class="app-loading-spinner"></div>
+        <div class="app-loading-text">加载中...</div>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

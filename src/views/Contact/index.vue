@@ -9,7 +9,10 @@
         <div class="contact-cards">
           <div class="contact-card">
             <div class="card-icon">
-              <img src="@/assets/images/联系我们_slices/Frame 1000011581.png" alt="" />
+              <img
+                src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011581.webp/low_quality?imageSlim"
+                alt=""
+              />
             </div>
             <div class="card-content">
               <p class="card-title">联系我们</p>
@@ -19,7 +22,10 @@
           </div>
           <div class="contact-card">
             <div class="card-icon">
-              <img src="@/assets/images/联系我们_slices/Frame 1000011581.png" alt="" />
+              <img
+                src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011581(1).webp/low_quality?imageSlim"
+                alt=""
+              />
             </div>
             <div class="card-content">
               <p class="card-title">联系我们</p>
@@ -29,7 +35,10 @@
           </div>
           <div class="contact-card">
             <div class="card-icon">
-              <img src="@/assets/images/联系我们_slices/Frame 1000011581.png" alt="" />
+              <img
+                src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011581(2).webp/low_quality?imageSlim"
+                alt=""
+              />
             </div>
             <div class="card-content">
               <p class="card-title">添加微信</p>
@@ -49,7 +58,10 @@
       </div>
       <div class="container-main address-content">
         <div class="address-image">
-          <img src="@/assets/images/联系我们_slices/Frame 1000011589.png" alt="" />
+          <img
+            src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011589.png/low_quality?imageSlim"
+            alt=""
+          />
         </div>
         <div class="address-info">
           <p class="info-title">苏州总部</p>
@@ -73,8 +85,8 @@
   display: flex;
   align-items: center;
   color: white;
-  background: url('../../assets/images/联系我们_slices/Group 1000011080.png') no-repeat center
-    center;
+  background: url('https://cdn.aoben.yoga/membermini/web/20260119/696dcdcf82e7c.webp/low_quality?imageSlim')
+    no-repeat center center;
   background-size: cover;
 }
 
@@ -88,8 +100,8 @@
   min-height: clamp(400px, 42vw, 600px);
   align-items: center;
   color: white;
-  background: url('../../assets/images/联系我们_slices/Frame 1000011588.png') no-repeat center
-    center;
+  background: url('https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011588.webp/low_quality?imageSlim')
+    no-repeat center center;
   background-size: cover;
   padding: 60px 20px;
 }

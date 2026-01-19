@@ -77,7 +77,10 @@
     <section class="certificate-section">
       <!-- 证书墙背景图 -->
       <div class="certificate-bg">
-        <img src="../../assets/images/关于我们_slices/Frame 1000011522@2x.png" alt="荣誉资质背景" />
+        <img
+          src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011522.webp/low_quality?imageSlim"
+          alt="荣誉资质背景"
+        />
         <div class="certificate-overlay"></div>
       </div>
 
