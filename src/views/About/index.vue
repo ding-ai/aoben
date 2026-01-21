@@ -41,12 +41,6 @@
     <!-- 企业文化/核心理念 -->
     <section class="culture-section">
       <div class="container-main">
-        <!-- 标题区域带背景水印 -->
-        <div class="culture-header">
-          <div class="culture-watermark">COMPANY CULTURE</div>
-          <h2 class="culture-title">企业文化/核心理念</h2>
-        </div>
-
         <!-- 使命和愿景 - 左右两栏 -->
         <div class="culture-grid">
           <!-- 企业使命 -->
@@ -410,6 +404,7 @@ const values = [
   position: relative;
   z-index: 10;
   text-align: center;
+  top: clamp(6rem, 5vw, 20rem);
 }
 
 .certificate-title {
@@ -424,7 +419,7 @@ const values = [
   font-size: clamp(4rem, 8vw, 6rem);
   font-weight: 900;
   color: #dc2626;
-  font-style: italic;
+  /* font-style: italic; */
   letter-spacing: -0.05em;
 }
 

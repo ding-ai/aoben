@@ -11,7 +11,7 @@
         <div class="profile-content">
           <h2 class="profile-title">集团简介</h2>
           <img
-            src="../../assets/images/首页_slices/GROUP PROFILE.png"
+            src="https://cdn.aoben.yoga/membermini/web/20260121/GROUPPROFILE.png/low_quality?imageSlim"
             alt="GROUP PROFILE"
             class="profile-subtitle-img"
           />
@@ -110,7 +110,7 @@
                 </svg>
               </button>
             </div>
-            <button class="news-btn">
+            <button class="news-btn" @click="goToNews">
               <span>了解详情</span>
               <span>→</span>
             </button>
@@ -122,18 +122,19 @@
               v-for="(item, idx) in newsItems"
               :key="idx"
               class="news-card"
-              :class="{ active: idx === 0 }"
+              :class="{ active: idx === activeNewsCard }"
+              @click="handleNewsCardClick(idx)"
             >
               <div class="news-date">
                 <span class="date-day">{{ item.date }}</span>
                 <span class="date-month">{{ item.month }}</span>
               </div>
-              <h3 class="news-card-title" :class="{ active: idx === 0 }">{{ item.title }}</h3>
+              <h3 class="news-card-title" :class="{ active: idx === activeNewsCard }">{{ item.title }}</h3>
               <p class="news-card-desc">{{ item.desc }}</p>
               <div class="news-card-image">
                 <img :src="item.image" :alt="item.title" loading="lazy" decoding="async" />
               </div>
-              <div class="news-card-arrow" :class="{ active: idx === 0 }">
+              <div class="news-card-arrow" :class="{ active: idx === activeNewsCard }">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
@@ -150,39 +151,115 @@
     </section>
 
     <!-- 服务分类 -->
-    <section class="services-section">
-      <div v-for="(cat, idx) in serviceCategories" :key="idx" class="service-item">
-        <!-- 背景图片 -->
-        <img :src="cat.image" :alt="cat.name" class="service-bg" loading="lazy" decoding="async" />
+    <section
+      class="flex flex-col lg:flex-row h-auto lg:h-[920px] w-full overflow-hidden bg-black relative"
+    >
+      <div
+        v-for="(cat, idx) in serviceCategories"
+        :key="idx"
+        class="relative flex-none lg:flex-1 transition-all duration-[800ms] ease-in-out cursor-pointer overflow-hidden border-b lg:border-b-0 lg:border-r border-white/5 last:border-0 h-[260px] lg:h-full will-change-[flex]"
+        :class="[
+          !isMobile ? 'lg:hover:flex-[6]' : '',
+          activeCategory === idx && isMobile
+            ? 'lg:flex-[6]'
+            : 'lg:flex-1'
+        ]"
+        @click="isMobile && (activeCategory = activeCategory === idx ? null : idx)"
+      >
+        <!-- 背景图片层 -->
+        <div class="absolute inset-0 z-0">
+          <img
+            :src="cat.image"
+            :alt="cat.name"
+            class="w-full h-full object-cover transition-transform duration-[1200ms]"
+            :class="[
+              (!isMobile && 'group-hover:scale-105') ||
+              (activeCategory === idx && isMobile ? 'scale-105' : 'scale-100')
+            ]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div
+            class="absolute inset-0 transition-colors duration-700"
+            :class="[
+              (!isMobile && 'group-hover:bg-black/15') ||
+              (activeCategory === idx && isMobile
+                ? 'bg-black/15'
+                : 'bg-black/30')
+            ]"
+          ></div>
+        </div>
 
-        <!-- 基础遮罩 -->
-        <div class="service-base-overlay"></div>
-
-        <!-- 展开状态的描述卡片 -->
-        <div class="service-expanded-card">
-          <div class="service-expanded-content">
-            <!-- Logo 标签 -->
-            <div class="service-logo-tag">
-              <span :style="{ color: cat.textColor }">{{ cat.tag }}</span>
+        <!-- 内容承载层 -->
+        <div
+          class="absolute inset-x-0 bottom-0 w-full h-full flex flex-col items-center justify-end z-20 pb-0 lg:pb-16"
+          :class="!isMobile ? 'group' : ''"
+        >
+          <!-- 1. 展开后的描述卡片 -->
+          <!-- 动画策略：
+            - 鼠标移入：延迟 400ms (delay-[400ms])，等待容器展开一定宽度后再渐入。
+            - 鼠标移出：不设延迟 (delay-0)，持续时间缩短 (duration-200)，实现内容先于容器复原而消失。
+            - 样式：居中且左右留空 (w-[90%] max-w-4xl mx-auto)。
+          -->
+          <div
+            class="absolute bottom-2 lg:bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-black/50 backdrop-blur-[32px] rounded-xl p-6 lg:p-16 min-h-[150px] lg:min-h-[240px] transition-all duration-200 lg:duration-600 ease-out flex flex-col items-center justify-center text-center border border-white/10 shadow-2xl"
+            :class="[
+              (!isMobile && 'group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-[400ms] translate-y-full opacity-0 delay-0') ||
+              (activeCategory === idx && isMobile
+                ? 'translate-y-0 opacity-100 delay-[400ms]'
+                : 'translate-y-full opacity-0 delay-0')
+            ]"
+          >
+            <div
+              class="bg-white px-5 py-1.5 mb-5 shadow-xl flex items-center justify-center rounded-sm"
+            >
+              <!-- <span
+                :style="{ color: cat.textColor }"
+                class="text-[11px] font-bold tracking-[0.1em] uppercase whitespace-nowrap"
+              >
+                {{ cat.img }}
+              </span> -->
+              <img :src="cat.img" alt="">
             </div>
-            <h4 class="service-expanded-title">{{ cat.name }}</h4>
-            <!-- 描述 -->
-            <p class="service-expanded-desc">{{ cat.description }}</p>
+            <h4
+              class="text-white text-2xl lg:text-4xl font-bold tracking-widest mb-6 whitespace-nowrap"
+            >
+              {{ cat.name }}
+            </h4>
+            <p
+              class="text-white/80 text-[13px] lg:text-base leading-loose max-w-3xl font-light text-center px-2 lg:px-6"
+            >
+              {{ cat.description }}
+            </p>
+          </div>
+
+          <!-- 2. 初始状态的底部栏 -->
+          <div
+            class="absolute bottom-8 lg:bottom-10 w-full h-[120px] lg:h-[140px] bg-white/10 backdrop-blur-xl flex flex-col items-center justify-center transition-all duration-200 lg:duration-300 ease-out"
+            :class="[
+              (!isMobile && 'group-hover:opacity-0 group-hover:-translate-y-32 opacity-100 translate-y-0') ||
+              (activeCategory === idx && isMobile
+                ? 'opacity-0 -translate-y-32'
+                : 'opacity-100 translate-y-0')
+            ]"
+          >
+            <div
+              class="bg-white px-4 lg:px-5 py-1.5 mb-3 shadow-md flex items-center justify-center rounded-sm"
+            >
+              <span
+                :style="{ color: cat.textColor }"
+                class="text-[10px] lg:text-[11px] font-bold tracking-[0.1em] whitespace-nowrap"
+              >
+                {{ cat.tag }}
+              </span>
+            </div>
+            <h3
+              class="text-white text-sm lg:text-lg font-medium tracking-[0.2em] whitespace-nowrap"
+            >
+              {{ cat.name }}
+            </h3>
           </div>
         </div>
-
-        <!-- 初始状态的底部栏 -->
-        <div class="service-initial-bar">
-          <!-- Logo 标签 -->
-          <div class="service-logo-tag-small">
-            <span :style="{ color: cat.textColor }">{{ cat.tag }}</span>
-          </div>
-          <!-- 名称 -->
-          <h3 class="service-initial-title">{{ cat.name }}</h3>
-        </div>
-
-        <!-- 底部红色强调线 -->
-        <div class="service-accent-line"></div>
       </div>
     </section>
   </div>
@@ -190,8 +267,34 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 import BannerSection from './components/BannerSection.vue'
 import ScrollIndicator from '@/components/ScrollIndicator.vue'
+
+// 服务分类激活状态 - 仅用于移动端
+const activeCategory = ref(null)
+
+// 新闻卡片激活状态
+const activeNewsCard = ref(null)
+
+// 检测是否为移动端
+const isMobile = ref(false)
+
+// 初始化路由器
+const router = useRouter()
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 1024
+}
+
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
 
 const statsRef = ref(null)
 const profileStats = ref([
@@ -266,7 +369,7 @@ onUnmounted(() => {
 const serviceCategories = [
   {
     name: '奥本瑜伽普拉提',
-    tag: 'AOBÉN奥本',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260121/Frame36.png/low_quality?imageSlim',
     textColor: '#E52E2A',
     image:
       'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011602.webp/low_quality?imageSlim',
@@ -275,7 +378,7 @@ const serviceCategories = [
   },
   {
     name: '奥本美肤SPA',
-    tag: 'AOBEN 奥本SPA',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260121/Frame37.png/low_quality?imageSlim',
     textColor: '#2DAA9E',
     image:
       'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011603.webp/low_quality?imageSlim',
@@ -284,7 +387,7 @@ const serviceCategories = [
   },
   {
     name: '奥本科技医美',
-    tag: 'Dr.AOBEN 奥本医美',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260121/Frame37(1).png/low_quality?imageSlim',
     textColor: '#00A2E8',
     image:
       'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011604.webp/low_quality?imageSlim',
@@ -293,7 +396,7 @@ const serviceCategories = [
   },
   {
     name: '奥本学院',
-    tag: '奥本商学',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260121/Frame1000011608.png/low_quality?imageSlim',
     textColor: '#1A1A1A',
     image:
       'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011605.webp/low_quality?imageSlim',
@@ -302,7 +405,7 @@ const serviceCategories = [
   },
   {
     name: '奥本先康达',
-    tag: 'AOBEN LIFE 奥本生命',
+    img: 'https://cdn.aoben.yoga/membermini/web/20260121/Frame37(2).png/low_quality?imageSlim',
     textColor: '#1A1A1A',
     image:
       'https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011606.webp/low_quality?imageSlim',
@@ -352,6 +455,22 @@ const nextNews = () => {
   if (currentNews.value < totalNewsPages.value - 1) {
     currentNews.value++
   }
+}
+
+// 处理新闻卡片点击事件
+const handleNewsCardClick = (index) => {
+  // 如果点击的是已激活的卡片，则取消激活
+  if (activeNewsCard.value === index) {
+    activeNewsCard.value = null
+  } else {
+    // 否则激活该卡片
+    activeNewsCard.value = index
+  }
+}
+
+// 跳转到新闻页面
+const goToNews = () => {
+  router.push('/news')
 }
 </script>
 
@@ -429,6 +548,7 @@ const nextNews = () => {
     max-width: 400px;
   }
 }
+
 @media (max-width: 768px) {
   .profile-content {
     max-width: 300px;
@@ -440,6 +560,7 @@ const nextNews = () => {
     max-width: 250px;
   }
 }
+
 @media (max-width: 480px) {
   .profile-content {
     max-width: 220px;
@@ -579,7 +700,7 @@ const nextNews = () => {
 @media (max-width: 375px) {
   .profile-text {
     font-size: 0.5625rem;
-    line-height: 1.1;
+    line-height: 1.2;
     margin-bottom: 2rem;
   }
 }
@@ -596,12 +717,15 @@ const nextNews = () => {
 
 @media (max-width: 480px) {
   .profile-text p {
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.7rem;
+    line-height: 1.8;
+    /* letter-spacing: 1px; */
   }
 }
 
 @media (max-width: 375px) {
   .profile-text p {
+
     margin-bottom: 0.5rem;
   }
 }
@@ -719,16 +843,16 @@ const nextNews = () => {
 
 @media (max-width: 480px) {
   .profile-image {
-    width: 650px;
+    width: 750px;
     bottom: 0px;
-    transform: translate(100px, 0px);
+    transform: translate(120px, 0px);
   }
 }
 
 @media (max-width: 375px) {
   .profile-image {
-    width: 600px;
-    transform: translate(80px, 0px);
+    width: 700px;
+    transform: translate(110px, 0px);
   }
 }
 
@@ -787,15 +911,15 @@ const nextNews = () => {
 @media (max-width: 480px) {
   .red-decoration-bg {
     width: 180px;
-    top: 40px;
+    top: 80px;
     transform: translate(20px, 10px);
   }
 }
 
 @media (max-width: 375px) {
   .red-decoration-bg {
-    width: 160px;
-    top: 35px;
+    width: 180px;
+    top: 70px;
     transform: translate(15px, 8px);
   }
 }
@@ -817,7 +941,7 @@ const nextNews = () => {
 /* 右侧数据统计 - 绝对定位在红色区域内，z-index: 10 在最上层 */
 .profile-stats {
   position: absolute;
-  top: 6rem;
+  top: 8rem;
   right: 2rem;
   display: flex;
   flex-direction: column;
@@ -827,7 +951,7 @@ const nextNews = () => {
 
 @media (max-width: 1280px) {
   .profile-stats {
-    top: 5rem;
+    top: 7rem;
     right: 2rem;
     gap: 2.25rem;
   }
@@ -835,7 +959,7 @@ const nextNews = () => {
 
 @media (max-width: 1024px) {
   .profile-stats {
-    top: 4rem;
+    top: 6rem;
     right: 2rem;
     gap: 2rem;
   }
@@ -843,7 +967,7 @@ const nextNews = () => {
 
 @media (max-width: 768px) {
   .profile-stats {
-    top: 3rem;
+    top: 5rem;
     right: 2rem;
     gap: 1.75rem;
   }
@@ -851,7 +975,7 @@ const nextNews = () => {
 
 @media (max-width: 640px) {
   .profile-stats {
-    top: 3rem;
+    top: 4rem;
     right: 2rem;
     gap: 1.5rem;
   }
@@ -859,7 +983,7 @@ const nextNews = () => {
 
 @media (max-width: 480px) {
   .profile-stats {
-    top: 3.5rem;
+    top: 7rem;
     right: 1.25rem;
     gap: 1.125rem;
   }
@@ -867,7 +991,7 @@ const nextNews = () => {
 
 @media (max-width: 375px) {
   .profile-stats {
-    top: 3rem;
+    top: 6rem;
     right: 1rem;
     gap: 1rem;
   }
@@ -1418,504 +1542,6 @@ const nextNews = () => {
 
   .news-card {
     padding: 20px;
-  }
-}
-
-/* ==================== 服务分类区域 ==================== */
-.services-section {
-  display: flex;
-  flex-direction: row;
-  height: 920px;
-  width: 100%;
-  overflow: hidden;
-  background-color: black;
-  position: relative;
-}
-
-.service-item {
-  position: relative;
-  flex: 1;
-  cursor: pointer;
-  overflow: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  transition: flex 0.8s ease-in-out;
-  will-change: flex;
-}
-
-.service-item:last-child {
-  border-right: none;
-}
-
-.service-item:hover {
-  flex: 5;
-}
-
-/* 背景图片 */
-.service-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.2s ease;
-  will-change: transform;
-}
-
-.service-item:hover .service-bg {
-  transform: scale(1);
-}
-
-/* 基础遮罩 */
-.service-base-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  transition: background-color 0.7s ease;
-  z-index: 1;
-}
-
-.service-item:hover .service-base-overlay {
-  background-color: transparent;
-}
-
-/* 展开状态的描述卡片 */
-.service-expanded-card {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 4rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  z-index: 30;
-  pointer-events: none;
-}
-
-.service-expanded-content {
-  width: 100%;
-  max-width: 56rem;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.65) 100%);
-  backdrop-filter: blur(24px);
-  border-radius: 1.5rem;
-  padding: 2rem 2.5rem;
-  transform: translateY(3rem);
-  opacity: 0;
-  transition: all 0.4s ease-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-.service-item:hover .service-expanded-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Logo 标签（展开状态） */
-.service-logo-tag {
-  background-color: white;
-  padding: 0.5rem 1.5rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.25rem;
-}
-
-.service-logo-tag span {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* 展开状态标题 */
-.service-expanded-title {
-  color: white;
-  font-size: 1.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-bottom: 1.25rem;
-  line-height: 1.3;
-}
-
-/* 展开状态描述 */
-.service-expanded-desc {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.9375rem;
-  line-height: 1.8;
-  max-width: 42rem;
-  font-weight: 400;
-  text-align: justify;
-  text-justify: inter-character;
-  letter-spacing: 0.02em;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.5s ease 0.2s;
-}
-
-.service-item:hover .service-expanded-desc {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 初始状态的底部栏 */
-.service-initial-bar {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 140px;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.7s ease;
-  z-index: 20;
-}
-
-.service-item:hover .service-initial-bar {
-  opacity: 0;
-  transform: translateY(-3rem);
-}
-
-/* Logo 标签（初始状态） */
-.service-logo-tag-small {
-  background-color: white;
-  padding: 0.375rem 1.25rem;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.service-logo-tag-small span {
-  font-size: 10px;
-  font-weight: bold;
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-}
-
-/* 初始状态标题 */
-.service-initial-title {
-  color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  white-space: nowrap;
-}
-
-/* 底部红色强调线 */
-.service-accent-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #ff3b30;
-  transform: scaleX(0);
-  transition: transform 0.7s ease;
-  transform-origin: center;
-  z-index: 40;
-}
-
-.service-item:hover .service-accent-line {
-  transform: scaleX(1);
-}
-
-/* 平板端适配 (768px - 1024px) */
-@media (max-width: 1024px) {
-  .services-section {
-    height: 600px;
-  }
-
-  .service-expanded-content {
-    padding: 1.75rem 2rem;
-    border-radius: 1.25rem;
-    max-width: 48rem;
-  }
-
-  .service-logo-tag {
-    padding: 0.4rem 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  .service-logo-tag span {
-    font-size: 9px;
-  }
-
-  .service-expanded-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .service-expanded-desc {
-    font-size: 0.875rem;
-    line-height: 1.7;
-    max-width: 38rem;
-  }
-
-  .service-initial-bar {
-    /* margin-bottom: 30px; */
-    height: 120px;
-  }
-
-  .service-initial-title {
-    font-size: 0.9375rem;
-  }
-}
-
-/* 手机端适配 - 改为纵向排列 */
-@media (max-width: 768px) {
-  .services-section {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .service-item {
-    flex: none;
-    height: 280px;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: height 0.6s ease-in-out;
-  }
-
-  .service-item:last-child {
-    border-bottom: none;
-  }
-
-  .service-item:hover {
-    flex: none;
-    height: 520px;
-  }
-
-  .service-bg {
-    transition: transform 1s ease;
-  }
-
-  .service-expanded-card {
-    padding-bottom: 2rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .service-expanded-content {
-    padding: 1.5rem 1.75rem;
-    border-radius: 1rem;
-    max-width: 100%;
-    transition: all 0.5s ease-out;
-  }
-
-  .service-logo-tag {
-    padding: 0.375rem 1rem;
-    margin-bottom: 0.875rem;
-  }
-
-  .service-logo-tag span {
-    font-size: 8px;
-    letter-spacing: 0.12em;
-  }
-
-  .service-expanded-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.875rem;
-    letter-spacing: 0.03em;
-  }
-
-  .service-expanded-desc {
-    font-size: 0.8125rem;
-    line-height: 1.65;
-    max-width: 100%;
-    text-align: center;
-    transition: all 0.6s ease 0.25s;
-  }
-
-  .service-initial-bar {
-    height: 100px;
-    transition: all 0.6s ease;
-  }
-
-  .service-logo-tag-small {
-    padding: 0.25rem 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .service-logo-tag-small span {
-    font-size: 9px;
-  }
-
-  .service-initial-title {
-    font-size: 0.875rem;
-  }
-
-  .service-accent-line {
-    transition: transform 0.6s ease;
-  }
-}
-
-/* 小屏手机适配 */
-@media (max-width: 480px) {
-  .service-item {
-    height: 240px;
-    transition: height 0.65s ease-in-out;
-  }
-
-  .service-item:hover {
-    height: 460px;
-  }
-
-  .service-bg {
-    transition: transform 1.1s ease;
-  }
-
-  .service-expanded-card {
-    padding-bottom: 1.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .service-expanded-content {
-    padding: 1.25rem 1.5rem;
-    transition: all 0.55s ease-out;
-  }
-
-  .service-logo-tag {
-    padding: 0.3rem 0.875rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .service-logo-tag span {
-    font-size: 7px;
-  }
-
-  .service-expanded-title {
-    font-size: 1.125rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .service-expanded-desc {
-    font-size: 0.75rem;
-    line-height: 1.6;
-    transition: all 0.65s ease 0.3s;
-  }
-
-  .service-initial-bar {
-    height: 90px;
-    transition: all 0.65s ease;
-  }
-
-  .service-initial-title {
-    font-size: 0.8125rem;
-  }
-
-  .service-accent-line {
-    transition: transform 0.65s ease;
-  }
-}
-
-/* 超小屏手机适配 */
-@media (max-width: 375px) {
-  .service-item {
-    height: 220px;
-  }
-
-  .service-item:hover {
-    height: 440px;
-  }
-
-  .service-expanded-card {
-    padding-bottom: 1.25rem;
-    padding-left: 0.875rem;
-    padding-right: 0.875rem;
-  }
-
-  .service-expanded-content {
-    padding: 1.125rem 1.25rem;
-  }
-
-  .service-logo-tag {
-    padding: 0.25rem 0.75rem;
-    margin-bottom: 0.625rem;
-  }
-
-  .service-logo-tag span {
-    font-size: 6px;
-  }
-
-  .service-expanded-title {
-    font-size: 1rem;
-    margin-bottom: 0.625rem;
-  }
-
-  .service-expanded-desc {
-    font-size: 0.6875rem;
-    line-height: 1.55;
-  }
-
-  .service-initial-bar {
-    height: 85px;
-  }
-
-  .service-logo-tag-small {
-    padding: 0.2rem 0.875rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .service-logo-tag-small span {
-    font-size: 8px;
-  }
-
-  .service-initial-title {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 360px) {
-  .service-item {
-    height: 200px;
-  }
-
-  .service-item:hover {
-    height: 420px;
-  }
-
-  .service-expanded-card {
-    padding-bottom: 1rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .service-expanded-content {
-    padding: 1rem 1.125rem;
-  }
-
-  .service-logo-tag span {
-    font-size: 5px;
-  }
-
-  .service-expanded-title {
-    font-size: 0.9375rem;
-  }
-
-  .service-expanded-desc {
-    font-size: 0.625rem;
-    line-height: 1.5;
-  }
-
-  .service-initial-bar {
-    height: 80px;
-  }
-
-  .service-initial-title {
-    font-size: 0.6875rem;
   }
 }
 </style>

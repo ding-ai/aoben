@@ -18,7 +18,7 @@
     <div class="container-main relative z-10 banner-content">
       <div class="max-w-xl lg:max-w-2xl">
         <h1
-          class="text-hero font-bold leading-tight mb-6 sm:mb-8 animate-fade-in-up"
+          class="text-hero font-bold leading-tight mb-6 sm:mb-8 animate-fade-in-up mede"
           style="color: #801111"
         >
           让健康成为生活方式
@@ -28,14 +28,14 @@
 
         <!-- 副标题 -->
         <p
-          class="text-subtitle text-warm-light/90 leading-relaxed mb-8 sm:mb-10 lg:mb-12 max-w-lg animate-fade-in-up"
+          class="text-subtitle text-warm-light/90 leading-relaxed mb-8 sm:mb-10 lg:mb-12 max-w-lg animate-fade-in-up mede1"
           style="animation-delay: 0.2s; margin-top: 0.8rem; color: #801111"
         >
-          奥本，以东方美学为根，科技赋能健康美，为每位用户定制高品质服务。
+          奥本，以东方美学为根，科技赋能健康 <br class="break-1000">美为每位用户定制高品质服务。
         </p>
 
         <!-- 按钮组 -->
-        <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
+        <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s;margin-top: 10px;">
           <button class="btn-primary" @click="goToAbout">
             <span>了解更多</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,5 +129,28 @@ const goToContact = () => {
 
 .bg-warm-bg {
   background-color: #faf9f7;
+}
+/* 默认隐藏这个换行符 */
+.break-1000 {
+  display: none;
+}
+
+/* 当屏幕小于 1000px 时，显示换行符，强制断行 */
+@media (max-width: 1000px) {
+  .break-1000 {
+    display: inline; /* 或者 block */
+    content: "";
+  }
+}
+.parent-container {
+  container-type: inline-size;
+}
+
+.mede {
+  /* 文字大小随父盒子的宽度变化 */
+  font-size: clamp(14px, 6cqw,80px);
+}
+.mede1{
+  font-size: clamp(12px, 2.5cqw, 24px);
 }
 </style>

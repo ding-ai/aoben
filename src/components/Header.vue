@@ -76,7 +76,7 @@
         <div class="mobile-menu-header">
           <div class="mobile-menu-title">
             <img
-              src="../assets/images/首页_slices/加粗细@2x.png"
+              src="https://cdn.aoben.yoga/membermini/web/20260121/%E5%8A%A0%E7%B2%97%E7%BB%86@2x.png/low_quality?imageSlim"
               alt="AOBEN奥本"
               class="mobile-logo"
             />

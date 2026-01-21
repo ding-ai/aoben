@@ -462,7 +462,7 @@ const nextPage = () => {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: #ccc;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
 }
 
 /* 时间轴区域 */
@@ -768,7 +768,7 @@ const nextPage = () => {
 
 .business-subtitle {
   font-family: 'Times New Roman', serif;
-  font-size: 32px;
+ font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: #ccc;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -959,10 +959,26 @@ const nextPage = () => {
 
 .core-subtitle {
   font-family: 'Times New Roman', serif;
-  font-size: clamp(1.25rem, 3vw, 2rem);
+  /* font-size: clamp(1.25rem, 3vw, 2rem); */
+   font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: #ccc;
   text-transform: uppercase;
   letter-spacing: 4px;
+}
+
+/* 平板端响应式样式 */
+@media (max-width: 1024px) {
+  .core-subtitle {
+    font-size: 26px;
+  }
+}
+
+/* 手机端响应式样式 */
+@media (max-width: 640px) {
+  .core-subtitle {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
 }
 
 .core-grid {
