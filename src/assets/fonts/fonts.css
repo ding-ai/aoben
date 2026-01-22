@@ -1,32 +1,38 @@
 /* Regular 400 - 正文 */
-/* @font-face {
+@font-face {
   font-family: 'MiSans';
-  src:
-    url('@/assets/fonts/MiSans/MiSans-Regular.woff2') format('woff2'),
-    url('@/assets/fonts/MiSans/MiSans-Regular.woff') format('woff');
+  src: url('./MiSans-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-} */
+}
+
 
 /* Medium 500 - 强调 */
-/* @font-face {
+@font-face {
   font-family: 'MiSans';
-  src:
-    url('@/assets/fonts/MiSans/MiSans-Medium.woff2') format('woff2'),
-    url('@/assets/fonts/MiSans/MiSans-Medium.woff') format('woff');
+  src: url('./MiSans-Semibold.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-} */
+}
 
 /* Semibold 600 - 标题 */
-/* @font-face {
+@font-face {
   font-family: 'MiSans';
-  src:
-    url('@/assets/fonts/MiSans/MiSans-Semibold.woff2') format('woff2'),
-    url('@/assets/fonts/MiSans/MiSans-Semibold.woff') format('woff');
+  src: url('./MiSans-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-} */
+}
+
+/* Alimama Agile VF Thin */
+@font-face {
+  font-family: 'AlimamaAgileVF';
+  src: url('./AlimamaAgileVF-Thin.woff2') format('woff2'),
+       url('./AlimamaAgileVF-Thin.woff') format('woff'),
+       url('./AlimamaAgileVF-Thin.ttf') format('truetype');
+  font-weight: 100 400;
+  font-style: normal;
+  font-display: swap;
+}

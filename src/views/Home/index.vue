@@ -437,7 +437,7 @@ const goToNews = () => {
 }
 
 .profile-container {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 7.5rem 3rem 5rem;
   position: relative;
@@ -1084,7 +1084,7 @@ const goToNews = () => {
 }
 
 .news-title-bg {
-  font-family: serif;
+  font-family: 'MiSans', sans-serif;
   font-size: 48px;
   font-weight: bold;
   text-transform: uppercase;

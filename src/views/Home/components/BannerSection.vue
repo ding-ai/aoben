@@ -14,7 +14,7 @@
       @load="onImageLoad"
     />
 
-    <!-- 内容区域 - 立即显示，不等待图片 -->
+   <!-- 内容区域 - 立即显示，不等待图片 -->
     <div class="container-main relative z-10 banner-content">
       <div class="max-w-xl lg:max-w-2xl">
         <h1
@@ -35,7 +35,7 @@
         </p>
 
         <!-- 按钮组 -->
-        <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s;margin-top: 10px;">
+        <!-- <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s;margin-top: 10px;">
           <button class="btn-primary" @click="goToAbout">
             <span>了解更多</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,7 +53,7 @@
           >
             联系我们
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -71,12 +71,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 
-const router = useRouter()
+// const router = useRouter()
 
 const bannerBg =
-  'https://cdn.aoben.yoga/membermini/web/20260119/Group1000011132.webp/low_quality?imageSlim'
+  'https://cdn.aoben.yoga/membermini/web/20260122/999.png/low_quality?imageSlim'
 
 const imageLoaded = ref(false)
 
@@ -84,18 +84,18 @@ const onImageLoad = () => {
   imageLoaded.value = true
 }
 
-const goToAbout = () => {
-  router.push('/about')
-}
+// const goToAbout = () => {
+//   router.push('/about')
+// }
 
-const goToContact = () => {
-  router.push('/contact')
-}
+// const goToContact = () => {
+//   router.push('/contact')
+// }
 </script>
 
 <style scoped>
 .banner-content {
-  padding-top: clamp(4rem, 10vh, 8rem);
+  padding-top: clamp(4rem, 10vh, 6rem);
 }
 
 .min-h-screen-safe {
@@ -148,9 +148,19 @@ const goToContact = () => {
 
 .mede {
   /* 文字大小随父盒子的宽度变化 */
-  font-size: clamp(14px, 6cqw,80px);
+  font-size: clamp(14px, 6cqw,60px);
+  color: #801111;
+  font-family: MiSans;
+  font-style: normal;
+  font-weight: 520;
+  line-height: normal;
 }
 .mede1{
-  font-size: clamp(12px, 2.5cqw, 24px);
+  font-size: clamp(12px, 2.5cqw, 18px);
+  color: rgba(128, 17, 17, 0.50);
+  font-style: normal;
+  font-weight: 330;
+  line-height: normal;
+
 }
 </style>

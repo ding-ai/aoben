@@ -56,11 +56,17 @@
       <div class="container-main">
         <div class="pagination">
           <button class="pagination-btn">
-            <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x.png" alt="上一页" />
+            <!-- <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x.png" alt="上一页" /> -->
+             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+  <path d="M16.25 19.5L9.75 13L16.25 6.5" stroke="#EF1B1B" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
           </button>
           <span class="pagination-text">01/03</span>
           <button class="pagination-btn">
-            <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x(1).png" alt="下一页" />
+            <!-- <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x(1).png" alt="下一页" /> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+  <path d="M9.75 19.5L16.25 13L9.75 6.5" stroke="#EF1B1B" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
           </button>
         </div>
       </div>

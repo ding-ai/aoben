@@ -12,11 +12,25 @@
   </header>
 
   <main>
+    <!-- 字体测试区域 -->
+    <!-- <div style="background: #000; color: #fff; padding: 20px; text-align: center;">
+      <p style="font-family: 'MiSans', sans-serif; font-size: 30px; margin-bottom: 10px;">
+        MiSans 字体测试: ABCDEFG 1234567
+      </p>
+      <p style="font-family: 'AlimamaAgileVF', 'MiSans', sans-serif; font-size: 30px; margin-bottom: 10px;">
+        AlimamaAgileVF 字体测试: ABCDEFG 1234567
+      </p>
+      <p style="font-family: 'AlimamaAgileVF', 'MiSans', sans-serif; font-size: 30px; ">
+        AlimamaAgileVF Thin: BRAND IDEOLOGY
+      </p>
+    </div> -->
+
     <div class="brand-section section-padding">
       <div class="container-main">
         <h2 class="section-title">品牌理念</h2>
         <div class="section-subtitle-img">
-          <img src="/src/assets/images/加盟奥本_slices/Brand Ideology.png" alt="Brand Ideology" />
+          <!-- <img src="/src/assets/images/加盟奥本_slices/Brand Ideology.png" alt="Brand Ideology" /> -->
+          <span>BRAND IDEOLOGY</span>
         </div>
       </div>
       <div class="container-main brand-desc">
@@ -49,7 +63,10 @@
               @click="prevPage"
               :disabled="currentPage === 0"
             >
-              <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x.png" alt="上一页" />
+             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+  <path d="M25.0013 45.8327C36.5072 45.8327 45.8346 36.5053 45.8346 24.9993C45.8346 13.4934 36.5072 4.16602 25.0013 4.16602C13.4954 4.16602 4.16797 13.4934 4.16797 24.9993C4.16797 36.5053 13.4954 45.8327 25.0013 45.8327Z" stroke="#EF1B1B" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M28.125 34.375L18.75 25L28.125 15.625" stroke="#EF1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
             </button>
             <button
               class="arrow-btn"
@@ -57,7 +74,10 @@
               @click="nextPage"
               :disabled="currentPage >= totalPages - 1"
             >
-              <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x(1).png" alt="下一页" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+  <path d="M24.9987 45.8327C13.4928 45.8327 4.16537 36.5053 4.16537 24.9993C4.16537 13.4934 13.4928 4.16602 24.9987 4.16602C36.5046 4.16602 45.832 13.4934 45.832 24.9993C45.832 36.5053 36.5046 45.8327 24.9987 45.8327Z" fill="#EF1B1B" stroke="#EF1B1B" stroke-width="4.16667" stroke-linejoin="round"/>
+  <path d="M21.875 34.375L31.25 25L21.875 15.625" stroke="white" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
             </button>
           </div>
         </div>
@@ -69,7 +89,12 @@
 
           <!-- 左侧圆形按钮 -->
           <button class="left-arrow" @click="prevPage" :disabled="currentPage === 0">
-            <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x.png" alt="上一页" />
+            <!-- <img src="/src/assets/images/新闻资讯_slices/chevron-left@2x.png" alt="上一页" /> -->
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+  <path d="M25.0013 45.8327C36.5072 45.8327 45.8346 36.5053 45.8346 24.9993C45.8346 13.4934 36.5072 4.16602 25.0013 4.16602C13.4954 4.16602 4.16797 13.4934 4.16797 24.9993C4.16797 36.5053 13.4954 45.8327 25.0013 45.8327Z" stroke="#EF1B1B" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M28.125 34.375L18.75 25L28.125 15.625" stroke="#EF1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
           </button>
 
           <div class="timeline-list" :class="slideDirection">
@@ -89,11 +114,15 @@
 
           <!-- 右侧圆形按钮 -->
           <button class="right-arrow" @click="nextPage" :disabled="currentPage >= totalPages - 1">
-            <img
+            <!-- <img
               src="/src/assets/images/新闻资讯_slices/chevron-left@2x.png"
               alt="下一页"
               style="transform: rotate(180deg)"
-            />
+            /> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+  <path d="M24.9987 45.8327C13.4928 45.8327 4.16537 36.5053 4.16537 24.9993C4.16537 13.4934 13.4928 4.16602 24.9987 4.16602C36.5046 4.16602 45.832 13.4934 45.832 24.9993C45.832 36.5053 36.5046 45.8327 24.9987 45.8327Z" fill="#EF1B1B" stroke="#EF1B1B" stroke-width="4.16667" stroke-linejoin="round"/>
+  <path d="M21.875 34.375L31.25 25L21.875 15.625" stroke="white" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
           </button>
         </div>
       </div>
@@ -351,6 +380,15 @@ const nextPage = () => {
   margin-top: clamp(0.75rem, 2vw, 1.125rem);
 }
 
+.section-subtitle-img span {
+  font-family: 'AlimamaAgileVF', 'MiSans', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #EEE;
+  letter-spacing: 2px;
+}
+
 .section-subtitle-img img {
   max-width: 100%;
   height: auto;
@@ -458,7 +496,7 @@ const nextPage = () => {
 }
 
 .history-subtitle {
-  font-family: 'Times New Roman', serif;
+  font-family: 'MiSans', sans-serif;
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: #ccc;
   text-transform: uppercase;
@@ -767,7 +805,7 @@ const nextPage = () => {
 }
 
 .business-subtitle {
-  font-family: 'Times New Roman', serif;
+  font-family: 'MiSans', sans-serif;
  font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: #ccc;
   text-transform: uppercase;
@@ -958,7 +996,7 @@ const nextPage = () => {
 }
 
 .core-subtitle {
-  font-family: 'Times New Roman', serif;
+  font-family: 'MiSans', sans-serif;
   /* font-size: clamp(1.25rem, 3vw, 2rem); */
    font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: #ccc;

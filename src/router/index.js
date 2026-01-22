@@ -38,6 +38,11 @@ const routes = [
         name: 'Download',
         component: () => import('@/views/Download/index.vue'),
       },
+      // {
+      //   path:'articles',
+      //   name: 'Articles',
+      //   component: () => import('@/views/Articles/index.vue'),
+      // }
     ],
   },
 ]
