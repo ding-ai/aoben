@@ -10,11 +10,8 @@
         <!-- 左侧文字内容 -->
         <div class="profile-content">
           <h2 class="profile-title">集团简介</h2>
-          <img
-            src="https://cdn.aoben.yoga/membermini/web/20260121/GROUPPROFILE.png/low_quality?imageSlim"
-            alt="GROUP PROFILE"
-            class="profile-subtitle-img"
-          />
+          <img src="https://cdn.aoben.yoga/membermini/web/20260121/GROUPPROFILE.png/low_quality?imageSlim"
+            alt="GROUP PROFILE" class="profile-subtitle-img" />
 
           <div class="profile-text">
             <p>
@@ -30,12 +27,7 @@
           <button class="profile-btn">
             <span>了解详情</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </button>
         </div>
@@ -50,22 +42,14 @@
 
         <!-- 右上角红色背景装饰图 - 最底层 z-index: 1 -->
         <div class="red-decoration-bg">
-          <img
-            src="https://cdn.aoben.yoga/membermini/web/20260119/Rectangle346241192.webp/low_quality?imageSlim"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
+          <img src="https://cdn.aoben.yoga/membermini/web/20260119/Rectangle346241192.webp/low_quality?imageSlim" alt=""
+            loading="lazy" decoding="async" />
         </div>
 
         <!-- 中间建筑图片 - 上层 z-index: 5 -->
         <div class="profile-image">
-          <img
-            src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011614.webp/low_quality?imageSlim"
-            alt="奥本大楼"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src="https://cdn.aoben.yoga/membermini/web/20260119/Frame1000011614.webp/low_quality?imageSlim"
+            alt="奥本大楼" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -83,30 +67,16 @@
             <div class="news-nav">
               <button class="nav-arrow" @click="prevNews" :disabled="currentNews === 0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
               </button>
               <span class="nav-page">
                 <span class="nav-current">{{ String(currentNews + 1).padStart(2, '0') }}</span> /
                 {{ String(totalNewsPages).padStart(2, '0') }}
               </span>
-              <button
-                class="nav-arrow"
-                @click="nextNews"
-                :disabled="currentNews >= totalNewsPages - 1"
-              >
+              <button class="nav-arrow" @click="nextNews" :disabled="currentNews >= totalNewsPages - 1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </button>
             </div>
@@ -118,30 +88,22 @@
 
           <!-- 右侧：新闻卡片 -->
           <div class="news-right">
-            <div
-              v-for="(item, idx) in newsItems"
-              :key="idx"
-              class="news-card"
-              :class="{ active: idx === activeNewsCard }"
-              @click="handleNewsCardClick(idx)"
-            >
+            <div v-for="(item, idx) in newsItems" :key="idx" class="news-card"
+              :class="{ active: idx === activeNewsCard }" @click="handleNewsCardClick(idx)">
               <div class="news-date">
                 <span class="date-day">{{ item.date }}</span>
                 <span class="date-month">{{ item.month }}</span>
               </div>
-              <h3 class="news-card-title" :class="{ active: idx === activeNewsCard }">{{ item.title }}</h3>
+              <h3 class="news-card-title" :class="{ active: idx === activeNewsCard }">
+                {{ item.title }}
+              </h3>
               <p class="news-card-desc">{{ item.desc }}</p>
               <div class="news-card-image">
                 <img :src="item.image" :alt="item.title" loading="lazy" decoding="async" />
               </div>
               <div class="news-card-arrow" :class="{ active: idx === activeNewsCard }">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M14 5l7 7-7 7"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"></path>
                 </svg>
               </div>
             </div>
@@ -151,50 +113,29 @@
     </section>
 
     <!-- 服务分类 -->
-    <section
-      class="flex flex-col lg:flex-row h-auto lg:h-[920px] w-full overflow-hidden bg-black relative"
-    >
-      <div
-        v-for="(cat, idx) in serviceCategories"
-        :key="idx"
+    <section class="flex flex-col lg:flex-row h-auto lg:h-[920px] w-full overflow-hidden bg-black relative">
+      <div v-for="(cat, idx) in serviceCategories" :key="idx"
         class="relative flex-none lg:flex-1 transition-all duration-[800ms] ease-in-out cursor-pointer overflow-hidden border-b lg:border-b-0 lg:border-r border-white/5 last:border-0 h-[260px] lg:h-full will-change-[flex]"
         :class="[
           !isMobile ? 'lg:hover:flex-[6]' : '',
-          activeCategory === idx && isMobile
-            ? 'lg:flex-[6]'
-            : 'lg:flex-1'
-        ]"
-        @click="isMobile && (activeCategory = activeCategory === idx ? null : idx)"
-      >
+          activeCategory === idx && isMobile ? 'lg:flex-[6]' : 'lg:flex-1',
+        ]" @click="isMobile && (activeCategory = activeCategory === idx ? null : idx)">
         <!-- 背景图片层 -->
         <div class="absolute inset-0 z-0">
-          <img
-            :src="cat.image"
-            :alt="cat.name"
-            class="w-full h-full object-cover transition-transform duration-[1200ms]"
-            :class="[
+          <img :src="cat.image" :alt="cat.name"
+            class="w-full h-full object-cover transition-transform duration-[1200ms]" :class="[
               (!isMobile && 'group-hover:scale-105') ||
-              (activeCategory === idx && isMobile ? 'scale-105' : 'scale-100')
-            ]"
-            loading="lazy"
-            decoding="async"
-          />
-          <div
-            class="absolute inset-0 transition-colors duration-700"
-            :class="[
-              (!isMobile && 'group-hover:bg-black/15') ||
-              (activeCategory === idx && isMobile
-                ? 'bg-black/15'
-                : 'bg-black/30')
-            ]"
-          ></div>
+              (activeCategory === idx && isMobile ? 'scale-105' : 'scale-100'),
+            ]" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 transition-colors duration-700" :class="[
+            (!isMobile && 'group-hover:bg-black/15') ||
+            (activeCategory === idx && isMobile ? 'bg-black/15' : 'bg-black/30'),
+          ]"></div>
         </div>
 
         <!-- 内容承载层 -->
-        <div
-          class="absolute inset-x-0 bottom-0 w-full h-full flex flex-col items-center justify-end z-20 pb-0 lg:pb-16"
-          :class="!isMobile ? 'group' : ''"
-        >
+        <div class="absolute inset-x-0 bottom-0 w-full h-full flex flex-col items-center justify-end z-20 pb-0 lg:pb-16"
+          :class="!isMobile ? 'group' : ''">
           <!-- 1. 展开后的描述卡片 -->
           <!-- 动画策略：
             - 鼠标移入：延迟 400ms (delay-[400ms])，等待容器展开一定宽度后再渐入。
@@ -204,31 +145,26 @@
           <div
             class="absolute bottom-2 lg:bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-black/50 backdrop-blur-[32px] rounded-xl p-6 lg:p-16 min-h-[150px] lg:min-h-[240px] transition-all duration-200 lg:duration-600 ease-out flex flex-col items-center justify-center text-center border border-white/10 shadow-2xl"
             :class="[
-              (!isMobile && 'group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-[400ms] translate-y-full opacity-0 delay-0') ||
+              (!isMobile &&
+                'group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-[400ms] translate-y-full opacity-0 delay-0') ||
               (activeCategory === idx && isMobile
                 ? 'translate-y-0 opacity-100 delay-[400ms]'
-                : 'translate-y-full opacity-0 delay-0')
-            ]"
-          >
-            <div
-              class="bg-white px-5 py-1.5 mb-5 shadow-xl flex items-center justify-center rounded-sm"
-            >
+                : 'translate-y-full opacity-0 delay-0'),
+            ]">
+            <div class="bg-white px-5 py-1.5 mb-5 shadow-xl flex items-center justify-center rounded-sm">
               <!-- <span
                 :style="{ color: cat.textColor }"
                 class="text-[11px] font-bold tracking-[0.1em] uppercase whitespace-nowrap"
               >
                 {{ cat.img }}
               </span> -->
-              <img :src="cat.img" alt="">
+              <img :src="cat.img" alt="" />
             </div>
-            <h4
-              class="text-white text-2xl lg:text-4xl font-bold tracking-widest mb-6 whitespace-nowrap"
-            >
+            <h4 class="text-white text-2xl lg:text-4xl font-bold tracking-widest mb-6 whitespace-nowrap">
               {{ cat.name }}
             </h4>
             <p
-              class="text-white/80 text-[13px] lg:text-base leading-loose max-w-3xl font-light text-center px-2 lg:px-6"
-            >
+              class="text-white/80 text-[13px] lg:text-base leading-loose max-w-3xl font-light text-center px-2 lg:px-6">
               {{ cat.description }}
             </p>
           </div>
@@ -237,25 +173,19 @@
           <div
             class="absolute bottom-8 lg:bottom-10 w-full h-[120px] lg:h-[140px] bg-white/10 backdrop-blur-xl flex flex-col items-center justify-center transition-all duration-200 lg:duration-300 ease-out"
             :class="[
-              (!isMobile && 'group-hover:opacity-0 group-hover:-translate-y-32 opacity-100 translate-y-0') ||
+              (!isMobile &&
+                'group-hover:opacity-0 group-hover:-translate-y-32 opacity-100 translate-y-0') ||
               (activeCategory === idx && isMobile
                 ? 'opacity-0 -translate-y-32'
-                : 'opacity-100 translate-y-0')
-            ]"
-          >
-            <div
-              class="bg-white px-4 lg:px-5 py-1.5 mb-3 shadow-md flex items-center justify-center rounded-sm"
-            >
-              <span
-                :style="{ color: cat.textColor }"
-                class="text-[10px] lg:text-[11px] font-bold tracking-[0.1em] whitespace-nowrap"
-              >
+                : 'opacity-100 translate-y-0'),
+            ]">
+            <div class="bg-white px-4 lg:px-5 py-1.5 mb-3 shadow-md flex items-center justify-center rounded-sm">
+              <span :style="{ color: cat.textColor }"
+                class="text-[10px] lg:text-[11px] font-bold tracking-[0.1em] whitespace-nowrap">
                 {{ cat.tag }}
               </span>
             </div>
-            <h3
-              class="text-white text-sm lg:text-lg font-medium tracking-[0.2em] whitespace-nowrap"
-            >
+            <h3 class="text-white text-sm lg:text-lg font-medium tracking-[0.2em] whitespace-nowrap">
               {{ cat.name }}
             </h3>
           </div>
@@ -725,7 +655,6 @@ const goToNews = () => {
 
 @media (max-width: 375px) {
   .profile-text p {
-
     margin-bottom: 0.5rem;
   }
 }
@@ -991,7 +920,7 @@ const goToNews = () => {
 
 @media (max-width: 375px) {
   .profile-stats {
-    top: 6rem;
+    top: 8rem;
     right: 1rem;
     gap: 1rem;
   }
