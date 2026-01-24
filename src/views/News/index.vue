@@ -129,7 +129,7 @@ const pastNews = [
 <style scoped>
 /* ==================== Banner ==================== */
 .banner {
-  min-height: clamp(400px, 42vw, 800px);
+  min-height: clamp(400px, 42vw, 1000px);
   display: flex;
   align-items: center;
   color: white;

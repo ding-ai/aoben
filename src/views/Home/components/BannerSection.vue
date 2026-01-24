@@ -29,9 +29,10 @@
         <!-- 副标题 -->
         <p
           class="text-subtitle text-warm-light/90 leading-relaxed mb-8 sm:mb-10 lg:mb-12 max-w-lg animate-fade-in-up mede1"
-          style="animation-delay: 0.2s; margin-top: 0.8rem; color: #801111"
+          style="animation-delay: 0.2s; margin-top: 0.8rem; color: #801111;position: relative;"
         >
           奥本，以东方美学为根，科技赋能健康 <br class="break-1000">美为每位用户定制高品质服务。
+              <ScrollIndicator />
         </p>
 
         <!-- 按钮组 -->
@@ -70,6 +71,7 @@
 </template>
 
 <script setup>
+import ScrollIndicator from '@/components/ScrollIndicator.vue'
 import { ref } from 'vue'
 // import { useRouter } from 'vue-router'
 
@@ -100,7 +102,7 @@ const onImageLoad = () => {
 
 .min-h-screen-safe {
   /* 手机最小400px，中间按42vw缩放，最大800px */
-  min-height: clamp(400px, 42vw, 800px);
+  min-height: clamp(400px, 42vw, 1000px);
 }
 
 /* 骨架屏背景 */

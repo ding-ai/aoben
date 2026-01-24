@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <ScrollIndicator />
+    <!-- <ScrollIndicator /> -->
     <!-- Banner -->
     <BannerSection />
 
@@ -10,8 +10,12 @@
         <!-- 左侧文字内容 -->
         <div class="profile-content">
           <h2 class="profile-title">集团简介</h2>
-          <img src="https://cdn.aoben.yoga/membermini/web/20260121/GROUPPROFILE.png/low_quality?imageSlim"
-            alt="GROUP PROFILE" class="profile-subtitle-img" />
+          <p style="color: #C2BABA;
+            font-family: Alimama Agile VF;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;margin-top: 18px;">GROUP PROFILE</p>
 
           <div class="profile-text">
             <p>
@@ -199,7 +203,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import BannerSection from './components/BannerSection.vue'
-import ScrollIndicator from '@/components/ScrollIndicator.vue'
+//import ScrollIndicator from '@/components/ScrollIndicator.vue'
 
 // 服务分类激活状态 - 仅用于移动端
 const activeCategory = ref(null)
@@ -510,11 +514,12 @@ const goToNews = () => {
 }
 
 .profile-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-  /* margin-bottom: 0.5rem; */
-  /* letter-spacing: 0.1em; */
+color: #333;
+font-family: MiSans;
+font-size: 38px;
+font-style: normal;
+font-weight: 520;
+line-height: normal;
 }
 
 @media (max-width: 1024px) {

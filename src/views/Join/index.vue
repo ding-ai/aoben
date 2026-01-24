@@ -333,7 +333,7 @@ const nextPage = () => {
 <style scoped>
 /* ==================== Banner 区域 ==================== */
 .banner {
-  min-height: clamp(400px, 42vw, 800px);
+  min-height: clamp(400px, 42vw, 1000px);
   display: flex;
   align-items: center;
   color: white;
@@ -451,7 +451,7 @@ const nextPage = () => {
 .history-container {
   min-height: clamp(500px, 42vw, 800px);
   padding: clamp(3rem, 8vw, 6rem) 0;
-  background-image: url('../../assets/images/加盟奥本_slices/Frame 1000011562@2x.png');
+  /* background-image: url('../../assets/images/加盟奥本_slices/Frame 1000011562@2x.png'); */
   background-size: cover;
   background-position: center;
   overflow: hidden;

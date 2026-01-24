@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奥本瑜伽适配方案</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: MiSans; }
+
+        /* 1. 背景图外容器 */
+        .hero-banner {
+            width: 100%;
+            /* 背景图核心配置：锁定右侧人物和Logo，裁切左侧 */
+            background-image: url('https://cdn.aoben.yoga/membermini/web/20260122/999.png/low_quality?imageSlim');
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            /* PC端比例：1920/800，保证图片完整显示 */
+            aspect-ratio: 1920 / 800;
+            
+            display: flex;
+            align-items: center;
+        }
+
+        /* 2. 内容容器 (版心控制) */
+        .container {
+            border: 1px solid red;
+            margin: 0 auto;
+            /* 手机端/主流形式：默认全屏缩放 */
+            width: 90%; 
+            box-sizing: border-box;
+            /* 给内容一点背景色方便你观察版心 */
+            /* background: rgba(0, 0, 0, 0.3); */
+            color: white;
+            /* padding: 40px; */
+        }
+
+        /* --- 响应式断点控制 --- */
+
+        /* 当屏幕足够大时，锁定 PC 版心 */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1440px;
+            }
+          
+        }
+
+        /* 当屏幕处于平板阶段，锁定 904px 版心 */
+        /* 我们设置一个区间，让它在接近 1024px 时切换到 904px */
+        @media (min-width: 904px) and (max-width: 1100px) {
+            .container {
+                max-width: 904px;
+            }
+            .hero-banner {
+                /* 平板端如果不想要太扁，可以手动固定高度 */
+                aspect-ratio: auto;
+                height: 612px;
+                 background-position: 60% center; 
+            }
+        }
+
+        /* 手机端：遵循主流形式 (无版心概念) */
+        @media (max-width: 767px) {
+            .container {
+                width: 100%;       /* 占满宽度 */
+                padding: 0 20px;   /* 左右留白20px */
+                background: transparent; /* 手机端通常文字直接浮在图上 */
+            }
+            .hero-banner {
+                aspect-ratio: auto;
+                height: 450px;      /* 手机端高度 */
+                /* 如果人物在极窄屏被挡住，可以把百分比稍微往左调一点，如 85% */
+                background-position: 60% center; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-banner">
+        <div class="container">
+            <h1>AOBEN YOGA</h1>
+            <p>PC: 1440px 版心 | 平板: 904px 版心</p>
+            <p>手机: 全屏流动布局 (Mainstream)</p>
+            <button style="padding: 10px 20px;">立即预约</button>
+        </div>
+    </div>
+
+</body>
+</html>

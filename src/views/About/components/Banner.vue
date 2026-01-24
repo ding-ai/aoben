@@ -42,6 +42,6 @@ const bannerBg =
 
 .min-h-screen-safe {
   /* 手机最小400px，中间按42vw缩放，最大800px */
-  min-height: clamp(400px, 42vw, 800px);
+  min-height: clamp(400px, 42vw, 1000px);
 }
 </style>
